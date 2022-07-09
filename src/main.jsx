@@ -1,11 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
-import "./index.css"
+import "antd/dist/antd.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Login, SignUp, TwoFA } from "./components";
+import { Container } from "./styled";
 
 ReactDOM.render(
-    <React.StrictMode>
-        <App />
-    </React.StrictMode>,
-    document.getElementById("root")
+  <React.StrictMode>
+    <Container>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/two-fa" element={<TwoFA />} />
+        </Routes>
+      </BrowserRouter>
+    </Container>
+  </React.StrictMode>,
+  document.getElementById("root")
 );
