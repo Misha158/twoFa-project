@@ -1,7 +1,8 @@
 import React from "react";
-import { Button, Form, Typography } from "antd";
+import { Button, Typography } from "antd";
 import Input from "antd/es/input/Input";
 import { useNavigate } from "react-router-dom";
+import { Background, Form, MainWrapper, Wrapper } from "../login/styled";
 
 export const SignUp = () => {
   const { Title } = Typography;
@@ -14,23 +15,26 @@ export const SignUp = () => {
   };
 
   return (
-    <>
-      <Title>Registration</Title>
-      <Form layout="vertical" onFinish={onFinish}>
-        <Form.Item label="Username" name="username">
-          <Input />
-        </Form.Item>
+    <MainWrapper>
+      <Wrapper>
+        <Title>Registration</Title>
+        <Form layout="vertical" onFinish={onFinish}>
+          <Form.Item label="Username" name="username">
+            <Input />
+          </Form.Item>
 
-        <Form.Item label="Password" name="password">
-          <Input.Password />
-        </Form.Item>
+          <Form.Item label="Password" name="password">
+            <Input.Password />
+          </Form.Item>
 
-        <Form.Item>
-          <Button type="primary" htmlType="submit">
-            Submit
-          </Button>
-        </Form.Item>
-      </Form>
-    </>
+          <Form.Item>
+            <Button type="primary" htmlType="submit">
+              Submit
+            </Button>
+          </Form.Item>
+        </Form>
+      </Wrapper>
+      <Background />
+    </MainWrapper>
   );
 };
