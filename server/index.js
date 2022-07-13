@@ -46,16 +46,18 @@ app.get("/get-twofa-qrcode", async (req, res) => {
 });
 
 app.post("/api/register", async (req, res) => {
+  const { userName, password } = req.body;
+  console.log(userName);
   const id = uuid.v4();
 
   try {
     const path = `/user/${id}`;
     // Create temporary secret until it it verified
     const temp_secret = speakeasy.generateSecret({
-      name: "misha",
+      name: userName,
     });
     // Create user in the database
-    db.push(path, { id, temp_secret });
+    db.push(path, { id, temp_secret, userName, password });
     // Send user id and base32 key to user
     await qrcode.toDataURL(temp_secret.otpauth_url, (err, data_url) => {
       res.json({ id, secret: temp_secret.base32, url: data_url });

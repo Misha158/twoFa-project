@@ -2,16 +2,31 @@ import React from "react";
 import { Button, Typography } from "antd";
 import Input from "antd/es/input/Input";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import { Background, Form, MainWrapper, Wrapper } from "../login/styled";
+import store from "../../store/store";
+import { observer } from "mobx-react";
+import { toJS } from "mobx";
 
-export const SignUp = () => {
+export const SignUp = observer(() => {
   const { Title } = Typography;
   const navigate = useNavigate();
 
-  const onFinish = (values) => {
-    console.log("Success:", values);
+  const onFinish = async (values) => {
     localStorage.setItem("userAuthData", JSON.stringify(values));
-    navigate("/");
+
+    const { data } = await axios({
+      url: "http://localhost:5000/api/register",
+      method: "POST",
+      data: {
+        userName: "misha2",
+        password: "123",
+      },
+    });
+
+    store.setAuthData(data);
+
+    navigate("/two-fa");
   };
 
   return (
@@ -37,4 +52,4 @@ export const SignUp = () => {
       <Background />
     </MainWrapper>
   );
-};
+});

@@ -2,20 +2,23 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Input from "antd/es/input/Input";
 import { Button } from "antd";
+import { Background, MainWrapper, Wrapper } from "../login/styled";
+import store from "../../store/store";
+import { observer } from "mobx-react";
 
-export const TwoFA = () => {
-  const [code, setCode] = useState("");
-  const [id, setId] = useState("");
+export const TwoFA = observer(() => {
+  /*  const [code, setCode] = useState("");
+  const [id, setId] = useState("");*/
   const [input, setInput] = useState("");
   const [validateCode, setValidateCode] = useState("");
   const [state, setState] = useState(false);
 
-  useEffect(async () => {
+  /*  useEffect(async () => {
     const { data } = await axios.post("http://localhost:5000/api/register");
     console.log(data);
     setCode(data.url);
     setId(data.id);
-  }, []);
+  }, []);*/
 
   const onClick = async () => {
     const { data } = await axios({
@@ -23,7 +26,7 @@ export const TwoFA = () => {
       url: "http://localhost:5000/api/verify",
       data: {
         token: input,
-        userId: id,
+        userId: store.authData.id,
       },
     });
 
@@ -51,7 +54,7 @@ export const TwoFA = () => {
       url: "http://localhost:5000/api/validate",
       data: {
         token: validateCode,
-        userId: id,
+        userId: store.authData.id,
       },
     });
 
@@ -60,30 +63,35 @@ export const TwoFA = () => {
   };
 
   return (
-    <div>
-      <h1>TwoFa</h1>
-      <img src={code} alt="" />
+    <MainWrapper>
+      <Wrapper>
+        <h1>TwoFa</h1>
+        <img src={store.authData.url} alt="" />
 
-      <Input value={id} placeholder="userID" />
-      <Input
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        placeholder="code"
-      />
-      <Button onClick={onClick}>Send code</Button>
-      <br />
-      <hr style={{ marginTop: "50px" }} />
-      <br />
+        <div style={{ maxWidth: "300px" }}>
+          <Input value={store.authData.id} placeholder="userID" />
+          <Input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="code"
+          />
+          <Button onClick={onClick}>Send code</Button>
+          <br />
+          <hr style={{ marginTop: "50px" }} />
+          <br />
 
-      <Input
-        placeholder="validate code"
-        value={validateCode}
-        onChange={onChangeValidateCode}
-      />
-      <Button onClick={onSendValidateCode}>Validate</Button>
-      <div style={{ backgroundColor: state ? "green" : "red" }}>
-        {state ? "success" : "Error"}
-      </div>
-    </div>
+          <Input
+            placeholder="validate code"
+            value={validateCode}
+            onChange={onChangeValidateCode}
+          />
+          <Button onClick={onSendValidateCode}>Validate</Button>
+          <div style={{ backgroundColor: state ? "green" : "red" }}>
+            {state ? "success" : "Error"}
+          </div>
+        </div>
+      </Wrapper>
+      <Background />
+    </MainWrapper>
   );
-};
+});
