@@ -22,7 +22,10 @@ export const TwoFA = observer(() => {
       token: input,
       userId: store.authData.id,
     });
-    store.setIsVerifyTwoFA(data.verified);
+    store.setIsVerifyTwoFA({
+      isVerifyTwoFA: data.verified,
+      shouldVerifyTwoFA: !data.verified,
+    });
 
     if (data.verified) {
       navigate("/dashboard");
@@ -43,12 +46,10 @@ export const TwoFA = observer(() => {
   };
 
   useEffect(() => {
-    if (!store.isVerifyTwoFA && !store.shouldVerifyTwoFA) {
+    if (!store.shouldVerifyTwoFA) {
       navigate("/registration");
     }
   }, []);
-
-  console.log(toJS(store.isVerifyTwoFA));
 
   return (
     <MainWrapper>

@@ -13,16 +13,12 @@ export const Registration = observer(() => {
   const { Title } = Typography;
   const navigate = useNavigate();
 
-  const onFinish = async ({ username, password }) => {
-    localStorage.setItem(
-      "userAuthData",
-      JSON.stringify({ username, password })
-    );
-
+  const onRegistration = async ({ username, password }) => {
     const {
       data: { id, secret, url },
     } = await authService.registration({ username, password });
     store.setAuthData({ username, password, id, secret, url });
+    store.setIsVerifyTwoFA({ isVerifyTwoFA: false, shouldVerifyTwoFA: true });
 
     navigate("/two-fa");
   };
@@ -31,7 +27,7 @@ export const Registration = observer(() => {
     <MainWrapper>
       <Wrapper>
         <Title>Registration</Title>
-        <Form layout="vertical" onFinish={onFinish}>
+        <Form layout="vertical" onFinish={onRegistration}>
           <Form.Item label="Username" name="username">
             <Input />
           </Form.Item>
