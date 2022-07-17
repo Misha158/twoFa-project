@@ -5,62 +5,50 @@ import { Button } from "antd";
 import { Background, MainWrapper, Wrapper } from "../login/styled";
 import store from "../../store/store";
 import { observer } from "mobx-react";
+import { Form } from "./styled";
+import { authService } from "../../sercives/authServices";
+import { toJS } from "mobx";
+import { useNavigate } from "react-router-dom";
 
 export const TwoFA = observer(() => {
-  /*  const [code, setCode] = useState("");
-  const [id, setId] = useState("");*/
   const [input, setInput] = useState("");
   const [validateCode, setValidateCode] = useState("");
   const [state, setState] = useState(false);
 
-  /*  useEffect(async () => {
-    const { data } = await axios.post("http://localhost:5000/api/register");
-    console.log(data);
-    setCode(data.url);
-    setId(data.id);
-  }, []);*/
+  const navigate = useNavigate();
 
   const onClick = async () => {
-    const { data } = await axios({
-      method: "POST",
-      url: "http://localhost:5000/api/verify",
-      data: {
-        token: input,
-        userId: store.authData.id,
-      },
+    const { data } = await authService.twoFAVerify({
+      token: input,
+      userId: store.authData.id,
     });
+    store.setIsVerifyTwoFA(data.verified);
 
-    console.log(data);
+    if (data.verified) {
+      navigate("/dashboard");
+    }
   };
-
-  // const onValidate = async () => {
-  //   const { data } = await axios({
-  //     method: "POST",
-  //     url: "http://localhost:5000/api/validate",
-  //     data: {
-  //       token: input,
-  //       userId: id,
-  //     },
-  //   });
-  // };
 
   const onChangeValidateCode = (event) => {
     setValidateCode(event.target.value);
   };
 
   const onSendValidateCode = async () => {
-    const { data } = await axios({
-      method: "POST",
-      url: "http://localhost:5000/api/validate",
-      data: {
-        token: validateCode,
-        userId: store.authData.id,
-      },
+    const { data } = await authService.twoFAVerify({
+      token: validateCode,
+      userId: store.authData.id,
     });
 
-    console.log(data);
     setState(data.validated);
   };
+
+  useEffect(() => {
+    if (!store.isVerifyTwoFA && !store.shouldVerifyTwoFA) {
+      navigate("/registration");
+    }
+  }, []);
+
+  console.log(toJS(store.isVerifyTwoFA));
 
   return (
     <MainWrapper>
@@ -68,7 +56,7 @@ export const TwoFA = observer(() => {
         <h1>TwoFa</h1>
         <img src={store.authData.url} alt="" />
 
-        <div style={{ maxWidth: "300px" }}>
+        <Form>
           <Input value={store.authData.id} placeholder="userID" />
           <Input
             value={input}
@@ -76,7 +64,7 @@ export const TwoFA = observer(() => {
             placeholder="code"
           />
           <Button onClick={onClick}>Send code</Button>
-          <br />
+          {/*          <br />
           <hr style={{ marginTop: "50px" }} />
           <br />
 
@@ -88,8 +76,8 @@ export const TwoFA = observer(() => {
           <Button onClick={onSendValidateCode}>Validate</Button>
           <div style={{ backgroundColor: state ? "green" : "red" }}>
             {state ? "success" : "Error"}
-          </div>
-        </div>
+          </div>*/}
+        </Form>
       </Wrapper>
       <Background />
     </MainWrapper>

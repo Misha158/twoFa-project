@@ -36,7 +36,7 @@ export const Login = () => {
               Submit
             </Button>
           </Form.Item>
-          <Link to="/sign-up">Go to registration</Link>
+          <Link to="/registration">Go to registration</Link>
         </Form>
       </Wrapper>
 

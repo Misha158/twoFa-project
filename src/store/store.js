@@ -6,9 +6,17 @@ class store {
   }
 
   authData = {};
+  isVerifyTwoFA = false;
+  shouldVerifyTwoFA = false;
 
-  setAuthData = (data) => {
-    this.authData = data;
+  setAuthData = ({ username, password, id, secret, url }) => {
+    this.authData = { username, password, id, secret, url };
+    this.shouldVerifyTwoFA = true;
+  };
+
+  setIsVerifyTwoFA = (isVerify) => {
+    this.isVerifyTwoFA = isVerify;
+    this.shouldVerifyTwoFA = isVerify;
   };
 }
 

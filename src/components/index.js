@@ -1,3 +1,3 @@
 export { Login } from "./login/Login";
-export { SignUp } from "./signUp/SignUp";
+export { Registration } from "./registration/Registration";
 export { TwoFA } from "./twoFA/TwoFA";

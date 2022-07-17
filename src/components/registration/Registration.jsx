@@ -7,24 +7,22 @@ import { Background, Form, MainWrapper, Wrapper } from "../login/styled";
 import store from "../../store/store";
 import { observer } from "mobx-react";
 import { toJS } from "mobx";
+import { authService } from "../../sercives/authServices";
 
-export const SignUp = observer(() => {
+export const Registration = observer(() => {
   const { Title } = Typography;
   const navigate = useNavigate();
 
-  const onFinish = async (values) => {
-    localStorage.setItem("userAuthData", JSON.stringify(values));
+  const onFinish = async ({ username, password }) => {
+    localStorage.setItem(
+      "userAuthData",
+      JSON.stringify({ username, password })
+    );
 
-    const { data } = await axios({
-      url: "http://localhost:5000/api/register",
-      method: "POST",
-      data: {
-        userName: "misha2",
-        password: "123",
-      },
-    });
-
-    store.setAuthData(data);
+    const {
+      data: { id, secret, url },
+    } = await authService.registration({ username, password });
+    store.setAuthData({ username, password, id, secret, url });
 
     navigate("/two-fa");
   };
