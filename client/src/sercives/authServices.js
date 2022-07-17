@@ -7,10 +7,10 @@ export const Axios = axios.create({
 });
 
 export const authService = {
-  login: ({ username, lastName }) =>
+  login: ({ username, password }) =>
     Axios.post("/login", {
       username,
-      lastName,
+      password,
     }),
 
   registration: ({ username, password }) =>
@@ -25,9 +25,9 @@ export const authService = {
       userId,
     }),
 
-  twoFAValidate: ({ username, lastName }) =>
-    Axios.post("/registration", {
-      username,
-      lastName,
+  twoFAValidate: ({ token, userId }) =>
+    Axios.post("/twofa-validate", {
+      userId,
+      token,
     }),
 };

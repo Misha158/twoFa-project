@@ -1,51 +1,57 @@
 import { makeAutoObservable } from "mobx";
 
+const getLocalStorageItem = (name) => JSON.parse(localStorage.getItem(name));
+
 class store {
   constructor() {
     makeAutoObservable(this);
   }
 
   authData = {
-    username: JSON.parse(localStorage.getItem("authData"))?.username,
-    password: JSON.parse(localStorage.getItem("authData"))?.password,
-    id: JSON.parse(localStorage.getItem("authData"))?.id,
-    secret: JSON.parse(localStorage.getItem("authData"))?.secret,
-    url: JSON.parse(localStorage.getItem("authData"))?.url,
+    username: getLocalStorageItem("authData")?.username,
+    password: getLocalStorageItem("authData")?.password,
+    id: getLocalStorageItem("authData")?.id,
+    secret: getLocalStorageItem("authData")?.secret,
+    url: getLocalStorageItem("authData")?.url,
+    shouldVerifiedTwoFA: getLocalStorageItem("authData")?.shouldVerifiedTwoFA,
+    shouldValidateTwoFA: getLocalStorageItem("authData")?.shouldValidateTwoFA,
+    isVerifiedTwoFA: getLocalStorageItem("authData"),
+    isAuth: getLocalStorageItem("authData")?.isAuth,
   };
 
-  isVerifyTwoFA = false;
-  shouldVerifyTwoFA = JSON.parse(localStorage.getItem("authData"))
-    ?.shouldVerifiedTwoFA;
+  onRegistration = ({ username, password, id, secret, url }) => {
+    this.authData = {
+      username,
+      password,
+      id,
+      secret,
+      url,
+      shouldVerifiedTwoFA: true,
+      shouldValidateTwoFA: false,
+      isVerifiedTwoFA: false,
+      isAuth: false,
+    };
 
-  setAuthData = ({ username, password, id, secret, url }) => {
-    this.authData = { username, password, id, secret, url };
-    this.shouldVerifyTwoFA = true;
-
-    localStorage.setItem(
-      "authData",
-      JSON.stringify({
-        username,
-        password,
-        id,
-        secret,
-        url,
-        shouldVerifiedTwoFA: true,
-      })
-    );
+    localStorage.setItem("authData", JSON.stringify(this.authData));
   };
 
-  setIsVerifyTwoFA = ({ isVerifyTwoFA, shouldVerifyTwoFA }) => {
-    this.isVerifyTwoFA = isVerifyTwoFA;
-    this.shouldVerifyTwoFA = shouldVerifyTwoFA;
+  setIsVerifiedTwoFA = ({ isVerifiedTwoFA, shouldVerifiedTwoFA }) => {
+    this.authData = {
+      ...this.authData,
+      shouldVerifiedTwoFA,
+      isVerifiedTwoFA,
+      isAuth: isVerifiedTwoFA,
+    };
 
-    localStorage.setItem(
-      "authData",
-      JSON.stringify({
-        ...this.authData,
-        shouldVerifiedTwoFA: shouldVerifyTwoFA,
-        isVerifyTwoFA,
-      })
-    );
+    localStorage.setItem("authData", JSON.stringify(this.authData));
+  };
+
+  setShouldValidateTwoFA = (shouldValidate) => {
+    this.authData = {
+      ...this.authData,
+      shouldValidateTwoFA: shouldValidate,
+    };
+    localStorage.setItem("authData", JSON.stringify(this.authData));
   };
 }
 

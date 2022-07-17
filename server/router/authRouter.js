@@ -4,8 +4,8 @@ import { authController } from "../controllers/authController.js";
 const authRouter = new Router();
 
 authRouter.post("/registration", authController.registration);
-// authRouter.post("/login", authController.login);
+authRouter.post("/login", authController.login);
 authRouter.post("/twofa-verify", authController.twoFAVerify);
-authRouter.post("/twofa-validate");
+authRouter.post("/twofa-validate", authController.twoFAValidate);
 
 export default authRouter;

@@ -17,8 +17,7 @@ export const Registration = observer(() => {
     const {
       data: { id, secret, url },
     } = await authService.registration({ username, password });
-    store.setAuthData({ username, password, id, secret, url });
-    store.setIsVerifyTwoFA({ isVerifyTwoFA: false, shouldVerifyTwoFA: true });
+    store.onRegistration({ username, password, id, secret, url });
 
     navigate("/two-fa");
   };
@@ -27,7 +26,11 @@ export const Registration = observer(() => {
     <MainWrapper>
       <Wrapper>
         <Title>Registration</Title>
-        <Form layout="vertical" onFinish={onRegistration}>
+        <Form
+          layout="vertical"
+          onFinish={onRegistration}
+          initialValues={{ username: "m", password: "1" }}
+        >
           <Form.Item label="Username" name="username">
             <Input />
           </Form.Item>

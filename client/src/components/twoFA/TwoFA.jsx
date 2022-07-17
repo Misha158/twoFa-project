@@ -12,19 +12,30 @@ import { useNavigate } from "react-router-dom";
 
 export const TwoFA = observer(() => {
   const [input, setInput] = useState("");
-  const [validateCode, setValidateCode] = useState("");
-  const [state, setState] = useState(false);
 
   const navigate = useNavigate();
 
-  const onClick = async () => {
+  const onVerifiedTwoFA = async () => {
+    if (store.authData.shouldValidateTwoFA) {
+      console.log("test");
+      const {
+        data: { validated },
+      } = await authService.twoFAValidate({
+        token: input,
+        userId: store.authData.id,
+      });
+
+      if (validated) {
+        navigate("/dashboard");
+      }
+    }
     const { data } = await authService.twoFAVerify({
       token: input,
       userId: store.authData.id,
     });
-    store.setIsVerifyTwoFA({
+    store.setIsVerifiedTwoFA({
       isVerifyTwoFA: data.verified,
-      shouldVerifyTwoFA: !data.verified,
+      shouldVerifiedTwoFA: !data.verified,
     });
 
     if (data.verified) {
@@ -32,21 +43,11 @@ export const TwoFA = observer(() => {
     }
   };
 
-  const onChangeValidateCode = (event) => {
-    setValidateCode(event.target.value);
-  };
-
-  const onSendValidateCode = async () => {
-    const { data } = await authService.twoFAVerify({
-      token: validateCode,
-      userId: store.authData.id,
-    });
-
-    setState(data.validated);
-  };
-
   useEffect(() => {
-    if (!store.shouldVerifyTwoFA) {
+    if (
+      !store.authData.shouldVerifiedTwoFA &&
+      !store.authData.shouldValidateTwoFA
+    ) {
       navigate("/registration");
     }
   }, []);
@@ -64,20 +65,7 @@ export const TwoFA = observer(() => {
             onChange={(e) => setInput(e.target.value)}
             placeholder="code"
           />
-          <Button onClick={onClick}>Send code</Button>
-          {/*          <br />
-          <hr style={{ marginTop: "50px" }} />
-          <br />
-
-          <Input
-            placeholder="validate code"
-            value={validateCode}
-            onChange={onChangeValidateCode}
-          />
-          <Button onClick={onSendValidateCode}>Validate</Button>
-          <div style={{ backgroundColor: state ? "green" : "red" }}>
-            {state ? "success" : "Error"}
-          </div>*/}
+          <Button onClick={onVerifiedTwoFA}>Verified twoFA</Button>
         </Form>
       </Wrapper>
       <Background />

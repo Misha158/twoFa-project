@@ -7,7 +7,7 @@ export const authController = {
   registration: async (req, res) => {
     try {
       const { username, password } = req.body;
-      const id = uuidv();
+      const id = username;
       const path = `/user/${id}`;
 
       const temp_secret = speakeasy.generateSecret({
@@ -15,7 +15,13 @@ export const authController = {
       });
 
       // Create user in the database
-      db.push(path, { id, temp_secret, username, password, isVerified: false });
+      db.push(path, {
+        id,
+        temp_secret,
+        username,
+        password,
+        isVerifiedTwoFA: false,
+      });
       // Send user id and base32 key to user
       await qrcode.toDataURL(temp_secret.otpauth_url, (err, data_url) => {
         res.json({ id, secret: temp_secret.base32, url: data_url });
@@ -25,6 +31,7 @@ export const authController = {
       res.send(e.message);
     }
   },
+
   twoFAVerify: async (req, res) => {
     try {
       const { token, userId } = req.body;
@@ -45,7 +52,8 @@ export const authController = {
           password: user.password,
           id: userId,
           secret: user.temp_secret,
-          isVerified: true,
+          isVerifiedTwoFA: true,
+          isAuth: true,
         });
 
         res.json({ verified: true });
@@ -55,6 +63,45 @@ export const authController = {
     } catch (e) {
       console.log(e);
       res.json({ verified: false });
+    }
+  },
+
+  login: async (req, res) => {
+    try {
+      const { username, password } = req.body;
+      const user = db.getData(username).user[username];
+
+      if (user.username !== username || user.password !== password) {
+        throw new Error("bad crendentials");
+      }
+
+      res.status(200).json({ id: user.username, ok: "Ok!" });
+    } catch (e) {
+      console.log(e);
+      res.status(401).json({ error: "Unauthorized" });
+    }
+  },
+  twoFAValidate: async (req, res) => {
+    const { token, userId } = req.body;
+    try {
+      // Retrieve user from database
+      const path = `/user/${userId}`;
+      const user = db.getData(path);
+      const { base32: secret } = user.secret;
+      // Returns true if the token matches
+      const tokenValidates = speakeasy.totp.verify({
+        secret,
+        encoding: "base32",
+        token,
+      });
+      if (!tokenValidates) {
+        throw new Error("Unauthorized");
+      }
+
+      res.status(200).json({ validated: true });
+    } catch (e) {
+      console.log(e);
+      res.status(401).json({ error: "Unauthorized" });
     }
   },
 };

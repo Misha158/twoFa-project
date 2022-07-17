@@ -2,27 +2,32 @@ import React, { useEffect, useState } from "react";
 import { Button, Typography, Input } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import { Background, Form, MainWrapper, Wrapper } from "./styled";
+import { authService } from "../../sercives/authServices";
+import store from "../../store/store";
+import { observer } from "mobx-react";
 
-export const Login = () => {
+export const Login = observer(() => {
   const { Title } = Typography;
   const navigate = useNavigate();
 
-  const onFinish = ({ password, username }) => {
-    const authLocal = JSON.parse(localStorage.getItem("userAuthData"));
-    if (password !== authLocal.password || username !== authLocal.username) {
-      alert("No right auth datas");
-      return;
-    }
+  const onLogin = async ({ password, username }) => {
+    try {
+      await authService.login({ password, username });
 
-    alert("Ok");
-    navigate("/two-fa");
+      store.setShouldValidateTwoFA(true);
+
+      alert("Ok");
+      navigate("/two-fa");
+    } catch (e) {
+      alert("Bad credentials, try again!");
+    }
   };
 
   return (
     <MainWrapper>
       <Wrapper>
         <Title>Login</Title>
-        <Form layout="vertical" onFinish={onFinish}>
+        <Form layout="vertical" onFinish={onLogin}>
           <Form.Item placeholder="Username" name="username">
             <Input />
           </Form.Item>
@@ -43,4 +48,4 @@ export const Login = () => {
       <Background />
     </MainWrapper>
   );
-};
+});
