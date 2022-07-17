@@ -1,19 +1,15 @@
 import styled from "styled-components";
+import { Form as AntForm } from "antd";
 
-export const Form = styled.div`
-  max-width: 300px;
+export const Form = styled(AntForm)`
+  min-width: 300px;
 
   input {
     padding: 7px 10px;
+    width: 100%;
   }
 
   button {
     width: 100%;
-  }
-
-  & > :nth-child(1),
-  > :nth-child(2),
-  > :nth-child(3) {
-    margin: 7px;
   }
 `;

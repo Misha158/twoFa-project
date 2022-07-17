@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import Input from "antd/es/input/Input";
-import { Button } from "antd";
+import { Button, Input } from "antd";
 import { Background, MainWrapper, Wrapper } from "../login/styled";
 import store from "../../store/store";
 import { observer } from "mobx-react";
@@ -11,18 +9,15 @@ import { toJS } from "mobx";
 import { useNavigate } from "react-router-dom";
 
 export const TwoFA = observer(() => {
-  const [input, setInput] = useState("");
-
   const navigate = useNavigate();
 
-  const onVerifiedTwoFA = async () => {
+  const onVerifiedTwoFA = async ({ token, userId }) => {
     if (store.authData.shouldValidateTwoFA) {
-      console.log("test");
       const {
         data: { validated },
       } = await authService.twoFAValidate({
-        token: input,
-        userId: store.authData.id,
+        token,
+        userId,
       });
 
       if (validated) {
@@ -30,8 +25,8 @@ export const TwoFA = observer(() => {
       }
     }
     const { data } = await authService.twoFAVerify({
-      token: input,
-      userId: store.authData.id,
+      token,
+      userId,
     });
     store.setIsVerifiedTwoFA({
       isVerifyTwoFA: data.verified,
@@ -58,14 +53,20 @@ export const TwoFA = observer(() => {
         <h1>TwoFa</h1>
         <img src={store.authData.url} alt="" />
 
-        <Form>
-          <Input value={store.authData.id} placeholder="userID" />
-          <Input
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="code"
-          />
-          <Button onClick={onVerifiedTwoFA}>Verified twoFA</Button>
+        <Form
+          layout="vertical"
+          onFinish={onVerifiedTwoFA}
+          initialValues={{ username: "m", password: "1" }}
+        >
+          <Form.Item name="userId">
+            <Input placeholder="userID" />
+          </Form.Item>
+
+          <Form.Item name="token">
+            <Input placeholder="code" />
+          </Form.Item>
+
+          <Button htmlType="submit">Verified twoFA</Button>
         </Form>
       </Wrapper>
       <Background />
