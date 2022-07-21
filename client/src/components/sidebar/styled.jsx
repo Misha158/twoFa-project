@@ -16,7 +16,7 @@ export const IconContainer = styled.div`
 `;
 
 export const MenuItemLink = styled(Link)`
-  color: ${({ isActive }) => (isActive ? "#ff08a1" : "white")};
+  color: ${({ $isActive }) => ($isActive ? "#ff08a1" : "white")};
   transition: all 0.3s ease-in-out;
 `;
 

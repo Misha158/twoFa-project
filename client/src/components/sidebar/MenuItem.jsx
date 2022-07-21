@@ -11,14 +11,10 @@ export const MenuItem = ({ isOpen, page }) => {
   const checkIsActivePage = (urlPage) => urlPage === location.pathname;
 
   return (
-    <MenuItemStyled
-      isOpen={isOpen}
-      key={page.name}
-      isActive={checkIsActivePage(page.url)}
-    >
+    <MenuItemStyled isOpen={isOpen} isActive={checkIsActivePage(page.url)}>
       <IconContainer>{page.icon}</IconContainer>
       {isOpen && (
-        <MenuItemLink to={page.url} isActive={checkIsActivePage(page.url)}>
+        <MenuItemLink to={page.url} $isActive={checkIsActivePage(page.url)}>
           {page.name}
         </MenuItemLink>
       )}

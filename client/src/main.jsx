@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "antd/dist/antd.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Login, Registration, TwoFA } from "./components";
 import { Container } from "./styled";
 import { App } from "./App";
 

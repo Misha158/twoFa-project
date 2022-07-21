@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import store from "./store/store";
 import { observer } from "mobx-react";
 import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
-import { Login, Registration, Sidebar, TwoFA } from "./components";
+import { Login, Registration, TwoFA } from "./pages";
+import { Sidebar } from "./components";
 
 const Dashboard = () => (
   <div style={{ display: "flex" }}>
@@ -14,11 +15,11 @@ const Dashboard = () => (
 export const App = observer(() => {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (store.shouldVerifiedTwoFA) {
+  /*  useEffect(() => {
+    if (store.authData.shouldVerifiedTwoFA) {
       navigate("/two-fa");
     }
-  }, []);
+  }, []);*/
 
   return (
     <Routes>
