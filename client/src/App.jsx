@@ -2,9 +2,14 @@ import React, { useEffect } from "react";
 import store from "./store/store";
 import { observer } from "mobx-react";
 import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
-import { Login, Registration, TwoFA } from "./components";
+import { Login, Registration, Sidebar, TwoFA } from "./components";
 
-const Dashboard = () => <div>test</div>;
+const Dashboard = () => (
+  <div style={{ display: "flex" }}>
+    <Sidebar />
+    <div>content</div>
+  </div>
+);
 
 export const App = observer(() => {
   const navigate = useNavigate();
