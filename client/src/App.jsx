@@ -13,10 +13,13 @@ const Dashboard = () => (
 );
 
 export const App = observer(() => {
-  const navigate = useNavigate();
+  /*  const navigate = useNavigate();
 
-  /*  useEffect(() => {
-    if (store.authData.shouldVerifiedTwoFA) {
+  useEffect(() => {
+    if (
+      store.authData.shouldVerifiedTwoFA &&
+      store.authData.shouldValidateTwoFA
+    ) {
       navigate("/two-fa");
     }
   }, []);*/

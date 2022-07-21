@@ -12,18 +12,8 @@ export const TwoFA = observer(() => {
   const navigate = useNavigate();
 
   const onVerifiedTwoFA = async ({ token, userId }) => {
-    if (store.authData.shouldValidateTwoFA) {
-      const {
-        data: { validated },
-      } = await authService.twoFAValidate({
-        token,
-        userId,
-      });
+    console.log("onVerifiedTwoFA");
 
-      if (validated) {
-        navigate("/dashboard");
-      }
-    }
     const { data } = await authService.twoFAVerify({
       token,
       userId,
@@ -34,6 +24,22 @@ export const TwoFA = observer(() => {
     });
 
     if (data.verified) {
+      store.setIsAuth(true);
+      navigate("/dashboard");
+    }
+  };
+
+  const onValidateTwoFA = async ({ token, userId }) => {
+    console.log("onValidateTwoFA");
+    const {
+      data: { validated },
+    } = await authService.twoFAValidate({
+      token,
+      userId,
+    });
+
+    if (validated) {
+      store.setIsAuth(true);
       navigate("/dashboard");
     }
   };
@@ -55,8 +61,11 @@ export const TwoFA = observer(() => {
 
         <Form
           layout="vertical"
-          onFinish={onVerifiedTwoFA}
-          initialValues={{ username: "m", password: "1" }}
+          onFinish={
+            store.authData.shouldValidateTwoFA
+              ? onValidateTwoFA
+              : onVerifiedTwoFA
+          }
         >
           <Form.Item name="userId">
             <Input placeholder="userID" />
@@ -66,7 +75,11 @@ export const TwoFA = observer(() => {
             <Input placeholder="code" />
           </Form.Item>
 
-          <Button htmlType="submit">Verified twoFA</Button>
+          <Button htmlType="submit">
+            {store.authData.shouldValidateTwoFA
+              ? "Validate twoFA"
+              : "Verified twoFA"}
+          </Button>
         </Form>
       </Wrapper>
       <Background />

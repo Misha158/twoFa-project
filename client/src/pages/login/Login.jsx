@@ -15,6 +15,7 @@ export const Login = observer(() => {
       await authService.login({ password, username });
 
       store.setShouldValidateTwoFA(true);
+      store.setShouldVerifiedTwoFA(false);
       alert("Ok");
       navigate("/two-fa");
     } catch (e) {

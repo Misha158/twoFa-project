@@ -46,10 +46,27 @@ class store {
     localStorage.setItem("authData", JSON.stringify(this.authData));
   };
 
+  setShouldVerifiedTwoFA = (shouldVerifiedTwoFA) => {
+    this.authData = {
+      ...this.authData,
+      shouldVerifiedTwoFA,
+    };
+
+    localStorage.setItem("authData", JSON.stringify(this.authData));
+  };
+
   setShouldValidateTwoFA = (shouldValidate) => {
     this.authData = {
       ...this.authData,
       shouldValidateTwoFA: shouldValidate,
+    };
+    localStorage.setItem("authData", JSON.stringify(this.authData));
+  };
+
+  setIsAuth = (isAuth) => {
+    this.authData = {
+      ...this.authData,
+      isAuth,
     };
     localStorage.setItem("authData", JSON.stringify(this.authData));
   };
