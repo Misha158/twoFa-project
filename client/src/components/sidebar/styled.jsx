@@ -1,10 +1,11 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   height: 100vh;
   background-color: black;
   width: ${({ isOpen }) => (isOpen ? "150px" : "80px")};
-  transition: width 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 `;
 
 export const IconContainer = styled.div`
@@ -14,15 +15,34 @@ export const IconContainer = styled.div`
   height: 20px;
 `;
 
+export const MenuItemLink = styled(Link)`
+  color: ${({ isActive }) => (isActive ? "#ff08a1" : "white")};
+  transition: all 0.3s ease-in-out;
+`;
+
 export const MenuItem = styled.div`
   display: flex;
   justify-content: ${({ isOpen }) => !isOpen && "center"};
   padding: 10px 15px;
   margin: 10px 0;
   background-color: ${({ isActive }) => isActive && "#6e6e6e"};
-
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
   svg {
     color: ${({ isActive }) => isActive && "#ff08a1"};
+    transition: all 0.3s ease-in-out;
+  }
+
+  :hover {
+    background-color: #6e6e6e;
+
+    ${MenuItemLink} {
+      color: #ff08a1;
+    }
+
+    svg {
+      color: #ff08a1;
+    }
   }
 `;
 

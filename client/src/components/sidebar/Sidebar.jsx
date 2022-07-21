@@ -6,6 +6,7 @@ import {
   MenuItemContainer,
   HeaderIcon,
   FlexContainer,
+  MenuItemLink,
 } from "./styled";
 import { Link, useLocation } from "react-router-dom";
 import { AiFillCaretRight, AiFillCaretLeft, AiFillHome } from "react-icons/ai";
@@ -60,7 +61,14 @@ export const Sidebar = () => {
             isActive={checkIsActivePage(page.url)}
           >
             <IconContainer>{page.icon}</IconContainer>
-            {isOpen && <Link to={page.url}>{page.name}</Link>}
+            {isOpen && (
+              <MenuItemLink
+                to={page.url}
+                isActive={checkIsActivePage(page.url)}
+              >
+                {page.name}
+              </MenuItemLink>
+            )}
           </MenuItem>
         ))}
       </MenuItemContainer>
