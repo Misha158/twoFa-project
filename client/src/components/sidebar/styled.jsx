@@ -4,7 +4,7 @@ export const Container = styled.div`
   height: 100vh;
   background-color: black;
   width: ${({ isOpen }) => (isOpen ? "150px" : "80px")};
-  transition: all 0.3s ease-in-out;
+  transition: width 0.3s ease-in-out;
 `;
 
 export const IconContainer = styled.div`
