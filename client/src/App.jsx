@@ -1,7 +1,14 @@
 import React, { useEffect } from "react";
 import store from "./store/store";
 import { observer } from "mobx-react";
-import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Navigate,
+  Outlet,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
 import { Login, Registration, TwoFA } from "./pages";
 import { Sidebar } from "./components";
 
@@ -12,24 +19,24 @@ const Dashboard = () => (
   </div>
 );
 
+const ProtectedRoutes = () => {
+  const isAuth = store.authData.isAuth;
+  return isAuth ? <Outlet /> : <Navigate to="/login" />;
+};
+
 export const App = observer(() => {
-  /*  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (
-      store.authData.shouldVerifiedTwoFA &&
-      store.authData.shouldValidateTwoFA
-    ) {
-      navigate("/two-fa");
-    }
-  }, []);*/
-
   return (
-    <Routes>
-      <Route path="/" element={<Login />} />
-      <Route path="/registration" element={<Registration />} />
-      <Route path="/two-fa" element={<TwoFA />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/registration" element={<Registration />} />
+        <Route path="/two-fa" element={<TwoFA />} />
+
+        <Route path="/" exact element={<ProtectedRoutes />}>
+          <Route path="/dashboard" exact element={<Dashboard />} />
+          <Route path="/settings" exact element={<Dashboard />} />
+        </Route>
+      </Routes>
+    </>
   );
 });

@@ -13,7 +13,7 @@ export const Sidebar = () => {
 
   return (
     <Container isOpen={isOpen}>
-      <Header toggleMenu={toggleMenu} />
+      <Header toggleMenu={toggleMenu} isOpen={isOpen} />
       <MenuItemContainer>
         {pages.map((page) => (
           <MenuItem isOpen={isOpen} page={page} key={page.name} />
