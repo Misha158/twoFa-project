@@ -9,15 +9,8 @@ import {
   Routes,
   useNavigate,
 } from "react-router-dom";
-import { Login, Registration, TwoFA } from "./pages";
+import { Login, Registration, TwoFA, Dashboard } from "./pages";
 import { Sidebar } from "./components";
-
-const Dashboard = () => (
-  <div style={{ display: "flex" }}>
-    <Sidebar />
-    <div>content</div>
-  </div>
-);
 
 const ProtectedRoutes = () => {
   const isAuth = store.authData.isAuth;
