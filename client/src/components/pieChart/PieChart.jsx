@@ -1,34 +1,42 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { PieChart as PieChartComponent, Pie, Label, Cell } from "recharts";
+import { getColors } from "./helpers";
 import "./style.css";
 
 export const PieChart = () => {
-  const valFromBack = 30;
+  const [value, setValue] = useState(null);
+  const [data, setData] = useState(null);
 
-  const val = 100 - valFromBack;
+  useEffect(() => {
+    const randomValue = Math.floor(Math.random() * (100 + 1));
 
-  const data1 = [
-    {
-      name: "1",
-      value: valFromBack,
-    },
-    {
-      name: "2",
-      value: val,
-    },
-  ];
+    const val = 100 - randomValue;
+    setValue(randomValue);
+    setData([
+      {
+        name: "1",
+        value: randomValue,
+      },
+      {
+        name: "2",
+        value: val,
+      },
+    ]);
+  }, []);
+
+  const colors = getColors(value);
 
   return (
     <div style={{ width: "150px", height: "150px" }}>
       <PieChartComponent width={200} height={200}>
         <defs>
           <linearGradient id={"1"}>
-            <stop offset={"0%"} stopColor={"darkgreen"} />
-            <stop offset={"100%"} stopColor={"green"} />
+            <stop offset={"0%"} stopColor={colors[0]} />
+            <stop offset={"100%"} stopColor={colors[1]} />
           </linearGradient>
         </defs>
         <Pie
-          data={data1}
+          data={data}
           innerRadius={45}
           outerRadius={70}
           dataKey="value"
@@ -38,7 +46,7 @@ export const PieChart = () => {
         />
 
         <Pie
-          data={data1}
+          data={data}
           innerRadius={45}
           outerRadius={70}
           dataKey="value"
@@ -48,7 +56,7 @@ export const PieChart = () => {
           startAngle={90}
           endAngle={-280}
         >
-          <Label value={50} position="center" className="test" />
+          <Label value={value} position="center" className="test" />
           <Cell fill={`url(#1)`} />
           <Cell fill="#eaeaea" />
         </Pie>
