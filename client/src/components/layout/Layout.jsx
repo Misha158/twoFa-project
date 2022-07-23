@@ -4,7 +4,7 @@ import { Header } from "./Header";
 
 export const Layout = ({ title, children }) => {
   return (
-    <div style={{ display: "flex", backgroundColor: "salmon" }}>
+    <div style={{ display: "flex", backgroundColor: "antiquewhite" }}>
       <Sidebar />
       <div style={{ width: "100%" }}>
         <Header />
