@@ -6,10 +6,9 @@ import { PieChart } from "../../components/pieChart/PieChart";
 export const Dashboard = () => {
   return (
     <Layout title="Dashboard">
-      <Card>Dashboard</Card>
-      <div>
+      <Card>
         <PieChart />
-      </div>
+      </Card>
     </Layout>
   );
 };
