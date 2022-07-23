@@ -9,7 +9,7 @@ export const Layout = ({ title, children }) => {
       <div style={{ width: "100%" }}>
         <Header />
         <div style={{ padding: 20 }}>
-          <h1>{title}</h1>
+          <h1 style={{ fontWeight: 700 }}>{title}</h1>
           <div>{children}</div>
         </div>
       </div>
