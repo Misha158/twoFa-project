@@ -53,10 +53,10 @@ export const PieChartGradient = ({ title, initialValue }) => {
       </Button>*/}
 
       {title && (
-        <h2 style={{ maxWidth: "150px", textAlign: "center" }}>Score</h2>
+        <h2 style={{ maxWidth: "250px", textAlign: "center" }}>Score</h2>
       )}
       <PieContainerStyled text={getText(value)}>
-        <PieChartComponent width={150} height={150} className="gradientPie">
+        <PieChartComponent width={250} height={250} className="gradientPie">
           <defs>
             <linearGradient id={randomValue}>
               <stop offset={"0%"} stopColor={colors?.[0]} />
@@ -65,8 +65,8 @@ export const PieChartGradient = ({ title, initialValue }) => {
           </defs>
           <Pie
             data={data}
-            innerRadius={45}
-            outerRadius={70}
+            innerRadius={55}
+            outerRadius={100}
             dataKey="value"
             fill="#eaeaea"
             isAnimationActive={false}
@@ -75,8 +75,8 @@ export const PieChartGradient = ({ title, initialValue }) => {
 
           <Pie
             data={data}
-            innerRadius={45}
-            outerRadius={70}
+            innerRadius={55}
+            outerRadius={100}
             dataKey="value"
             labelLine={false}
             blendStroke

@@ -9,13 +9,6 @@ import {
   Tooltip,
 } from "recharts";
 
-const data = [
-  { name: "Group A", value: 400 },
-  { name: "Group B", value: 300 },
-  { name: "Group C", value: 300 },
-  { name: "Group D", value: 200 },
-];
-
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
 const RADIAN = Math.PI / 180;
@@ -55,8 +48,7 @@ const renderLegend = (props) => {
       {payload.map((entry, index) => (
         <li key={`item-${index}`} style={{ color: entry.color }}>
           {entry.value} - {entry.payload.value} (
-          {/*{Math.toFixed(entry.payload.percent)})*/}
-          {entry.payload.percent.toFixed(2) * 100}%)
+          {Math.round((entry.payload.percent * 100).toFixed(2))}%)
         </li>
       ))}
     </ul>
@@ -64,6 +56,13 @@ const renderLegend = (props) => {
 };
 
 export const PieChart = ({ title }) => {
+  const data = [
+    { name: "Group A", value: Math.floor(Math.random() * (1000 + 1)) },
+    { name: "Group B", value: Math.floor(Math.random() * (1000 + 1)) },
+    { name: "Group C", value: Math.floor(Math.random() * (1000 + 1)) },
+    { name: "Group D", value: Math.floor(Math.random() * (1000 + 1)) },
+  ];
+
   return (
     <div style={{ width: "450px", height: "400px" }}>
       {title && <h2>{title}</h2>}

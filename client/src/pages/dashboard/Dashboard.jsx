@@ -25,27 +25,27 @@ const getValueForStatistic = () => {
 const cards = [
   {
     name: "Customers",
-    value: 1220,
+    value: Math.floor(Math.random() * (10000 + 1)),
     diff: getValueForStatistic(),
   },
   {
     name: "Products",
-    value: 345,
+    value: Math.floor(Math.random() * (10000 + 1)),
     diff: getValueForStatistic(),
   },
   {
     name: "Sales",
-    value: 234,
+    value: Math.floor(Math.random() * (10000 + 1)),
     diff: getValueForStatistic(),
   },
   {
     name: "Benefits",
-    value: 2,
+    value: Math.floor(Math.random() * (10000 + 1)),
     diff: getValueForStatistic(),
   },
   {
     name: "Benefits",
-    value: 790,
+    value: Math.floor(Math.random() * (10000 + 1)),
     diff: getValueForStatistic(),
   },
 ];

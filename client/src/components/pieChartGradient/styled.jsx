@@ -2,15 +2,15 @@ import styled from "styled-components";
 
 const getLeft = ({ text }) => {
   if (text === "Good") {
-    return "57px";
+    return "107px";
   }
 
   if (text === "Bad") {
-    return "62px";
+    return "115px";
   }
 
   if (text === "Normal") {
-    return "52px";
+    return "100px";
   }
 };
 
@@ -29,13 +29,10 @@ const getColor = ({ text }) => {
 };
 
 export const PieContainerStyled = styled.div`
-  width: 150px;
-  height: 150px;
-
   .gradientPie::before {
     content: ${({ text }) => (text ? `"${text}"` : "")};
     position: absolute;
-    top: 85px;
+    top: 140px;
     left: ${getLeft};
     color: ${getColor};
     font-weight: 600;
