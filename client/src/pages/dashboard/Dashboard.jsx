@@ -3,6 +3,7 @@ import { Layout, Card, PieChart, PieChartGradient } from "../../components";
 import { Col, Row, Statistic } from "antd";
 import styled from "styled-components";
 import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/all";
+import { Line } from "../../components/charts/line/Line";
 
 const ItemContainer = styled.div`
   display: flex;
@@ -92,10 +93,17 @@ export const Dashboard = () => {
         </Row>
       </Card>
       <Card title="charts">
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <PieChart title="Users" />
-          <PieChart title="Money" />
-        </div>
+        <Row style={{ display: "flex", justifyContent: "space-between" }}>
+          <Col>
+            <PieChart title="Users" />
+          </Col>
+          <Col>
+            <Line title="Bitcoin" />
+          </Col>
+          <Col>
+            <PieChart title="Money" />
+          </Col>
+        </Row>
       </Card>
     </Layout>
   );

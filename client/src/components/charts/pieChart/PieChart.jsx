@@ -64,9 +64,9 @@ export const PieChart = ({ title }) => {
   ];
 
   return (
-    <div style={{ width: "450px", height: "400px" }}>
+    <div style={{ width: "100%", height: "100%" }}>
       {title && <h2>{title}</h2>}
-      <PieChartComponent width={450} height={400}>
+      <PieChartComponent width={450} height={300}>
         <Legend
           layout="vertical"
           align="right"

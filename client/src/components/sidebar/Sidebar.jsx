@@ -5,7 +5,7 @@ import { Header } from "./Header";
 import { pages } from "./consts";
 
 export const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   const toggleMenu = () => {
     setIsOpen((prev) => !prev);

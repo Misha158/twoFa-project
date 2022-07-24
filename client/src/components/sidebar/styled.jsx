@@ -2,10 +2,10 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const Container = styled.div`
-  height: 100vh;
   background-color: black;
   width: ${({ isOpen }) => (isOpen ? "150px" : "80px")};
   transition: all 0.3s ease-in-out;
+  min-height: 100vh;
 `;
 
 export const IconContainer = styled.div`
@@ -47,6 +47,7 @@ export const MenuItem = styled.div`
 `;
 
 export const MenuItemContainer = styled.div`
+  //position: fixed;
   ${MenuItem}:first-child {
     margin-top: 100px;
   }
@@ -59,6 +60,9 @@ export const HeaderIcon = styled.div`
 `;
 
 export const FlexContainer = styled.div`
+  //position: sticky;
+  //top: 0;
+  //z-index: 99999;
   display: flex;
   justify-content: space-between;
   align-items: center;
