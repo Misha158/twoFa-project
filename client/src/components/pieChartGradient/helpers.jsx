@@ -1,4 +1,8 @@
 export const getColors = (value) => {
+  if (!value) {
+    return;
+  }
+
   if (value <= 25) {
     return ["red", "darkred"];
   }

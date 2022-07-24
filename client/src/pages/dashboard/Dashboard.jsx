@@ -1,7 +1,5 @@
 import React from "react";
-import { Layout } from "../../components/layout/Layout";
-import { Card } from "../../components/card/Card";
-import { PieChart } from "../../components/pieChart/PieChart";
+import { Layout, Card, PieChart, PieChartGradient } from "../../components";
 import { Col, Row, Statistic } from "antd";
 import styled from "styled-components";
 import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/all";
@@ -58,14 +56,14 @@ export const Dashboard = () => {
       <Card>
         <Row style={{ display: "flex" }}>
           <Col span={4}>
-            <PieChart />
+            <PieChartGradient title="score" />
           </Col>
           <Col
             span={20}
             style={{ display: "flex", justifyContent: "space-between" }}
           >
             {cards.map((card) => (
-              <ItemContainer isGrow={card.diff > 50}>
+              <ItemContainer isGrow={card.diff > 50} key={card.value}>
                 <div>
                   <div style={{ fontWeight: "600", fontSize: 18 }}>
                     {card.name}
@@ -92,6 +90,12 @@ export const Dashboard = () => {
             ))}
           </Col>
         </Row>
+      </Card>
+      <Card title="charts">
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <PieChart title="Users" />
+          <PieChart title="Money" />
+        </div>
       </Card>
     </Layout>
   );

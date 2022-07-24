@@ -1,93 +1,93 @@
-import React, { useEffect, useState } from "react";
-import { PieChart as PieChartComponent, Pie, Label, Cell } from "recharts";
-import { getColors, getText } from "./helpers";
-import "./style.css";
-import { PieContainerStyled } from "./styled";
-import { Button } from "antd";
+import React, { PureComponent } from "react";
+import {
+  PieChart as PieChartComponent,
+  Pie,
+  Sector,
+  Cell,
+  ResponsiveContainer,
+  Legend,
+  Tooltip,
+} from "recharts";
 
-/*const getRandomPieValue = ({ setValue, setData }) => {
-  const randomValue = Math.floor(Math.random() * (100 + 1));
-  setValue(randomValue);
-  const val = 100 - randomValue;
-  setData([
-    {
-      name: "1",
-      value: randomValue,
-    },
-    {
-      name: "2",
-      value: val,
-    },
-  ]);
-};*/
+const data = [
+  { name: "Group A", value: 400 },
+  { name: "Group B", value: 300 },
+  { name: "Group C", value: 300 },
+  { name: "Group D", value: 200 },
+];
 
-export const PieChart = () => {
-  const [value, setValue] = useState(null);
-  const [data, setData] = useState(null);
+const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
-  useEffect(() => {
-    const randomValue = Math.floor(Math.random() * (100 + 1));
-
-    const val = 100 - randomValue;
-    setValue(randomValue);
-    setData([
-      {
-        name: "1",
-        value: randomValue,
-      },
-      {
-        name: "2",
-        value: val,
-      },
-    ]);
-  }, []);
-
-  const colors = getColors(value);
+const RADIAN = Math.PI / 180;
+const renderCustomizedLabel = ({
+  cx,
+  cy,
+  midAngle,
+  innerRadius,
+  outerRadius,
+  percent,
+  index,
+}) => {
+  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+  const x = cx + radius * Math.cos(-midAngle * RADIAN);
+  const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
   return (
-    <>
-      {/*      <Button
-        type="primary"
-        onClick={() => getRandomPieValue({ setValue, setData })}
-      >
-        Change pie
-      </Button>*/}
-      <h2 style={{ maxWidth: "150px", textAlign: "center" }}>Score</h2>
-      <PieContainerStyled text={getText(value)}>
-        <PieChartComponent width={150} height={150} className="gradientPie">
-          <defs>
-            <linearGradient id={"1"}>
-              <stop offset={"0%"} stopColor={colors[0]} />
-              <stop offset={"100%"} stopColor={colors[1]} />
-            </linearGradient>
-          </defs>
-          <Pie
-            data={data}
-            innerRadius={45}
-            outerRadius={70}
-            dataKey="value"
-            fill="#eaeaea"
-            isAnimationActive={false}
-            stroke=""
-          />
+    <text
+      x={x}
+      y={y}
+      fill="white"
+      textAnchor={x > cx ? "start" : "end"}
+      dominantBaseline="central"
+    >
+      {`${(percent * 100).toFixed(0)}%`}
+    </text>
+  );
+};
 
-          <Pie
-            data={data}
-            innerRadius={45}
-            outerRadius={70}
-            dataKey="value"
-            labelLine={false}
-            blendStroke
-            isAnimationActive={true}
-            startAngle={90}
-            endAngle={-280}
-          >
-            <Label value={value} position="center" className="test" />
-            <Cell fill={`url(#1)`} />
-            <Cell fill="#eaeaea" />
-          </Pie>
-        </PieChartComponent>
-      </PieContainerStyled>
-    </>
+const renderLegend = (props) => {
+  const { payload } = props;
+
+  console.log(props);
+
+  return (
+    <ul>
+      {payload.map((entry, index) => (
+        <li key={`item-${index}`} style={{ color: entry.color }}>
+          {entry.value} - {entry.payload.value} (
+          {/*{Math.toFixed(entry.payload.percent)})*/}
+          {entry.payload.percent.toFixed(2) * 100}%)
+        </li>
+      ))}
+    </ul>
+  );
+};
+
+export const PieChart = ({ title }) => {
+  return (
+    <div style={{ width: "450px", height: "400px" }}>
+      {title && <h2>{title}</h2>}
+      <PieChartComponent width={450} height={400}>
+        <Legend
+          layout="vertical"
+          align="right"
+          verticalAlign="middle"
+          content={renderLegend}
+        />
+        <Pie
+          data={data}
+          labelLine={false}
+          label={renderCustomizedLabel}
+          outerRadius={130}
+          fill="#8884d8"
+          dataKey="value"
+        >
+          {data.map((entry, index) => (
+            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+          ))}
+        </Pie>
+        <Tooltip />
+      </PieChartComponent>
+    </div>
   );
 };
