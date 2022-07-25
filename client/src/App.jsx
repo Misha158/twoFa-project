@@ -9,7 +9,7 @@ import {
   Routes,
   useNavigate,
 } from "react-router-dom";
-import { Login, Registration, TwoFA, Dashboard, Exel } from "./pages";
+import { Login, Registration, TwoFA, Dashboard, Excel } from "./pages";
 import { routes } from "./consts/routes";
 
 const ProtectedRoutes = () => {
@@ -27,7 +27,7 @@ export const App = observer(() => {
 
         <Route path="/" exact element={<ProtectedRoutes />}>
           <Route path={routes.dashboard} exact element={<Dashboard />} />
-          <Route path={routes.exel} exact element={<Exel />} />
+          <Route path={routes.exel} exact element={<Excel />} />
         </Route>
       </Routes>
     </>
