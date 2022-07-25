@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "./style.css";
 
 export const Cell = ({ cellId }) => {
-  const [cellValue, setCellValue] = useState("test");
+  const [cellValue, setCellValue] = useState("");
   const [isEditMode, setIsEditMode] = useState(false);
   const inputRef = useRef(null);
 

@@ -1,11 +1,11 @@
 import React from "react";
 import { Layout } from "../../components";
-import { Cell } from "./Cell";
+import { Sheet } from "./Sheet/Sheet";
 
 export const Exel = () => {
   return (
     <Layout title="Exel">
-      <Cell />
+      <Sheet />
     </Layout>
   );
 };
