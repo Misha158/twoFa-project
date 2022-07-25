@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import store from "./store/store";
 import { observer } from "mobx-react";
 import {
@@ -9,8 +9,8 @@ import {
   Routes,
   useNavigate,
 } from "react-router-dom";
-import { Login, Registration, TwoFA, Dashboard } from "./pages";
-import { Sidebar } from "./components";
+import { Login, Registration, TwoFA, Dashboard, Exel } from "./pages";
+import { routes } from "./consts/routes";
 
 const ProtectedRoutes = () => {
   const isAuth = store.authData.isAuth;
@@ -21,13 +21,13 @@ export const App = observer(() => {
   return (
     <>
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/registration" element={<Registration />} />
+        <Route path={routes.login} element={<Login />} />
+        <Route path={routes.registration} element={<Registration />} />
         <Route path="/two-fa" element={<TwoFA />} />
 
         <Route path="/" exact element={<ProtectedRoutes />}>
-          <Route path="/dashboard" exact element={<Dashboard />} />
-          <Route path="/settings" exact element={<Dashboard />} />
+          <Route path={routes.dashboard} exact element={<Dashboard />} />
+          <Route path={routes.exel} exact element={<Exel />} />
         </Route>
       </Routes>
     </>

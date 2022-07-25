@@ -15,21 +15,21 @@ export const IconContainer = styled.div`
   height: 20px;
 `;
 
-export const MenuItemLink = styled(Link)`
+export const MenuItemLink = styled.div`
   color: ${({ $isActive }) => ($isActive ? "#ff08a1" : "white")};
   transition: all 0.3s ease-in-out;
 `;
 
-export const MenuItem = styled.div`
+export const MenuItem = styled(Link)`
   display: flex;
-  justify-content: ${({ isOpen }) => !isOpen && "center"};
+  justify-content: ${({ $isOpen }) => !$isOpen && "center"};
   padding: 10px 15px;
   margin: 10px 0;
-  background-color: ${({ isActive }) => isActive && "#6e6e6e"};
+  background-color: ${({ $isActive }) => $isActive && "#6e6e6e"};
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   svg {
-    color: ${({ isActive }) => isActive && "#ff08a1"};
+    color: ${({ $isActive }) => $isActive && "#ff08a1"};
     transition: all 0.3s ease-in-out;
   }
 
