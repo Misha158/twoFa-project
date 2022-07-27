@@ -13,12 +13,14 @@ export const Sidebar = () => {
 
   return (
     <Container isOpen={isOpen}>
-      <Header toggleMenu={toggleMenu} isOpen={isOpen} />
-      <MenuItemContainer>
-        {pages.map((page) => (
-          <MenuItem isOpen={isOpen} page={page} key={page.name} />
-        ))}
-      </MenuItemContainer>
+      <div style={{ position: "sticky", top: 0 }}>
+        <Header toggleMenu={toggleMenu} isOpen={isOpen} />
+        <MenuItemContainer>
+          {pages.map((page) => (
+            <MenuItem isOpen={isOpen} page={page} key={page.name} />
+          ))}
+        </MenuItemContainer>
+      </div>
     </Container>
   );
 };

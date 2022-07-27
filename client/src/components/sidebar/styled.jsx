@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   background-color: black;
+  min-width: ${({ isOpen }) => (isOpen ? "150px" : "80px")};
   width: ${({ isOpen }) => (isOpen ? "150px" : "80px")};
   transition: all 0.3s ease-in-out;
   min-height: 100vh;
@@ -11,7 +12,7 @@ export const Container = styled.div`
 export const IconContainer = styled.div`
   color: white;
   margin-right: 10px;
-  width: 20px;
+  min-width: 20px;
   height: 20px;
 `;
 
