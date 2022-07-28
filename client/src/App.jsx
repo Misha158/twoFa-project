@@ -26,6 +26,7 @@ export const App = observer(() => {
         <Route path="/two-fa" element={<TwoFA />} />
 
         <Route path="/" exact element={<ProtectedRoutes />}>
+          <Route path="/" exact element={<Dashboard />} />
           <Route path={routes.dashboard} exact element={<Dashboard />} />
           <Route path={routes.exel} exact element={<Excel />} />
         </Route>

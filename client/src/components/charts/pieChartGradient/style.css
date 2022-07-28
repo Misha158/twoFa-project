@@ -1,6 +1,14 @@
-.test {
-    font-size: 36px;
+.pie-chart-label {
     white-space: pre-wrap;
     font-weight: 600;
+}
+
+.normalPiechart {
+    font-size: 36px;
+}
+
+
+.smallPiechart {
+    font-size: 18px;
 }
 

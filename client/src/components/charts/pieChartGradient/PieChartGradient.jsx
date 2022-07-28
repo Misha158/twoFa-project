@@ -21,7 +21,7 @@ import { Button } from "antd";
   ]);
 };*/
 
-export const PieChartGradient = ({ title, initialValue }) => {
+export const PieChartGradient = ({ title, initialValue, size = "normal" }) => {
   const [value, setValue] = useState(initialValue || null);
   const [data, setData] = useState(null);
   const randomValue = Math.floor(Math.random() * (100 + 1));
@@ -53,10 +53,21 @@ export const PieChartGradient = ({ title, initialValue }) => {
       </Button>*/}
 
       {title && (
-        <h2 style={{ maxWidth: "250px", textAlign: "center" }}>Score</h2>
+        <h2
+          style={{
+            maxWidth: size === "normal" ? "250px" : "150px",
+            textAlign: "center",
+          }}
+        >
+          Score
+        </h2>
       )}
-      <PieContainerStyled text={getText(value)}>
-        <PieChartComponent width={250} height={250} className="gradientPie">
+      <PieContainerStyled text={size === "normal" ? getText(value) : null}>
+        <PieChartComponent
+          width={size === "normal" ? 250 : 150}
+          height={size === "normal" ? 250 : 150}
+          className="gradientPie"
+        >
           <defs>
             <linearGradient id={randomValue}>
               <stop offset={"0%"} stopColor={colors?.[0]} />
@@ -65,8 +76,8 @@ export const PieChartGradient = ({ title, initialValue }) => {
           </defs>
           <Pie
             data={data}
-            innerRadius={55}
-            outerRadius={100}
+            innerRadius={size === "normal" ? 55 : 25}
+            outerRadius={size === "normal" ? 100 : 40}
             dataKey="value"
             fill="#eaeaea"
             isAnimationActive={false}
@@ -75,8 +86,8 @@ export const PieChartGradient = ({ title, initialValue }) => {
 
           <Pie
             data={data}
-            innerRadius={55}
-            outerRadius={100}
+            innerRadius={size === "normal" ? 55 : 25}
+            outerRadius={size === "normal" ? 100 : 40}
             dataKey="value"
             labelLine={false}
             blendStroke
@@ -84,7 +95,13 @@ export const PieChartGradient = ({ title, initialValue }) => {
             startAngle={90}
             endAngle={-280}
           >
-            <Label value={value} position="center" className="test" />
+            <Label
+              value={value}
+              position="center"
+              className={`pie-chart-label ${
+                size === "normal" ? "normalPiechart" : "smallPiechart"
+              }`}
+            />
             <Cell fill={`url(#${randomValue})`} />
             <Cell fill="#eaeaea" />
           </Pie>

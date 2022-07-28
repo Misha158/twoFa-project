@@ -103,6 +103,9 @@ export const Dashboard = () => {
           <Col>
             <PieChart title="Money" />
           </Col>
+          <Col>
+            <PieChartGradient size="small" />
+          </Col>
         </Row>
       </Card>
     </Layout>
