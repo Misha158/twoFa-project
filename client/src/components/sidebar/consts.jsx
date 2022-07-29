@@ -1,4 +1,8 @@
-import { AiFillHome, AiOutlineTable } from "react-icons/ai";
+import {
+  AiFillHome,
+  AiOutlineTable,
+  AiOutlineOrderedList,
+} from "react-icons/ai";
 import React from "react";
 import { routes } from "../../consts/routes";
 
@@ -16,8 +20,8 @@ export const pages = [
     url: routes.exel,
   },
   {
-    name: "Settings",
-    icon: <AiFillHome style={defaultStyles} />,
-    url: routes.settings,
+    name: "Virtualized",
+    icon: <AiOutlineOrderedList style={defaultStyles} />,
+    url: routes.virtualized,
   },
 ];

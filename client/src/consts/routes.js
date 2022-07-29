@@ -6,4 +6,5 @@ export const routes = {
   dashboard: "/dashboard",
   exel: "/exel",
   settings: "/settings",
+  virtualized: "/virtualized",
 };

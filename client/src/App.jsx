@@ -9,7 +9,14 @@ import {
   Routes,
   useNavigate,
 } from "react-router-dom";
-import { Login, Registration, TwoFA, Dashboard, Excel } from "./pages";
+import {
+  Login,
+  Registration,
+  TwoFA,
+  Dashboard,
+  Excel,
+  Virtualized,
+} from "./pages";
 import { routes } from "./consts/routes";
 
 const ProtectedRoutes = () => {
@@ -29,6 +36,7 @@ export const App = observer(() => {
           <Route path="/" exact element={<Dashboard />} />
           <Route path={routes.dashboard} exact element={<Dashboard />} />
           <Route path={routes.exel} exact element={<Excel />} />
+          <Route path={routes.virtualized} exact element={<Virtualized />} />
         </Route>
       </Routes>
     </>
