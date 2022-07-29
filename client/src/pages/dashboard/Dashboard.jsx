@@ -92,7 +92,7 @@ export const Dashboard = () => {
           </Col>
         </Row>
       </Card>
-      <Card title="charts">
+      <Card title="charts" withSmallPiechart>
         <Row style={{ display: "flex", justifyContent: "space-between" }}>
           <Col>
             <PieChart title="Users" />
@@ -102,9 +102,6 @@ export const Dashboard = () => {
           </Col>
           <Col>
             <PieChart title="Money" />
-          </Col>
-          <Col>
-            <PieChartGradient size="small" />
           </Col>
         </Row>
       </Card>

@@ -39,7 +39,7 @@ const Row = ({ index, style }) => {
 export const Virtualized = () => {
   return (
     <Layout title="Virtualized">
-      <Card>
+      <Card withSmallPiechart>
         <div className="list">
           <List height={550} itemCount={rowCount} itemSize={60} width={"100%"}>
             {Row}

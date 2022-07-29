@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { PieChart as PieChartComponent, Pie, Label, Cell } from "recharts";
 import { getColors, getText } from "./helpers";
 import "./style.css";
-import { PieContainerStyled } from "./styled";
+import { PieBackground, PieContainerStyled } from "./styled";
 import { Button } from "antd";
 
 /*const getRandomPieValue = ({ setValue, setData }) => {
@@ -55,17 +55,21 @@ export const PieChartGradient = ({ title, initialValue, size = "normal" }) => {
       {title && (
         <h2
           style={{
-            maxWidth: size === "normal" ? "250px" : "150px",
+            maxWidth: size === "normal" ? "250px" : "75px",
             textAlign: "center",
           }}
         >
           Score
         </h2>
       )}
-      <PieContainerStyled text={size === "normal" ? getText(value) : null}>
+      <PieBackground size={size} />
+      <PieContainerStyled
+        text={size === "normal" ? getText(value) : null}
+        size={size}
+      >
         <PieChartComponent
-          width={size === "normal" ? 250 : 150}
-          height={size === "normal" ? 250 : 150}
+          width={size === "normal" ? 250 : 75}
+          height={size === "normal" ? 250 : 75}
           className="gradientPie"
         >
           <defs>
@@ -76,8 +80,8 @@ export const PieChartGradient = ({ title, initialValue, size = "normal" }) => {
           </defs>
           <Pie
             data={data}
-            innerRadius={size === "normal" ? 55 : 25}
-            outerRadius={size === "normal" ? 100 : 40}
+            innerRadius={size === "normal" ? 55 : 20}
+            outerRadius={size === "normal" ? 100 : 35}
             dataKey="value"
             fill="#eaeaea"
             isAnimationActive={false}
@@ -86,8 +90,8 @@ export const PieChartGradient = ({ title, initialValue, size = "normal" }) => {
 
           <Pie
             data={data}
-            innerRadius={size === "normal" ? 55 : 25}
-            outerRadius={size === "normal" ? 100 : 40}
+            innerRadius={size === "normal" ? 55 : 20}
+            outerRadius={size === "normal" ? 100 : 35}
             dataKey="value"
             labelLine={false}
             blendStroke
