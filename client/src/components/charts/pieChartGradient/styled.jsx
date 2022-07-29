@@ -30,7 +30,7 @@ const getColor = ({ text }) => {
 
 export const PieContainerStyled = styled.div`
   position: ${({ size }) => size === "small" && "absolute"};
-  top: -25px;
+  top: -35px;
   right: 20px;
 
   .gradientPie::before {
@@ -47,18 +47,19 @@ export const PieBackground = styled.div`
   position: absolute;
   border-radius: 50%;
   background-color: white;
-  right: 25px;
 
   ${({ size }) =>
     size === "small"
       ? `
     width: 65px;
     height: 65px;
-    top: -20px;
+    top: -30px;
+    right: 25px;
   `
       : `
     width: 155px;
     height: 155px;
     top: 80px;
+    right: 50px;
   `}
 `;

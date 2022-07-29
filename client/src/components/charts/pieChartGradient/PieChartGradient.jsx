@@ -44,7 +44,12 @@ export const PieChartGradient = ({ title, initialValue, size = "normal" }) => {
   }, []);
 
   return (
-    <>
+    <div
+      style={{
+        position: "relative",
+        minWidth: size !== "small" ? "250px" : "",
+      }}
+    >
       {/*      <Button
         type="primary"
         onClick={() => getRandomPieValue({ setValue, setData })}
@@ -111,6 +116,6 @@ export const PieChartGradient = ({ title, initialValue, size = "normal" }) => {
           </Pie>
         </PieChartComponent>
       </PieContainerStyled>
-    </>
+    </div>
   );
 };
