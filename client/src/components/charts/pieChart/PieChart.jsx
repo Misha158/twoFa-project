@@ -8,6 +8,7 @@ import {
   Legend,
   Tooltip,
 } from "recharts";
+import { Grid } from "antd";
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
@@ -41,8 +42,6 @@ const renderCustomizedLabel = ({
 const renderLegend = (props) => {
   const { payload } = props;
 
-  console.log(props);
-
   return (
     <ul>
       {payload.map((entry, index) => (
@@ -63,14 +62,17 @@ export const PieChart = ({ title }) => {
     { name: "Group D", value: Math.floor(Math.random() * (1000 + 1)) },
   ];
 
+  const { useBreakpoint } = Grid;
+  const { xs } = useBreakpoint();
+
   return (
     <div style={{ width: "100%", height: "100%" }}>
       {title && <h2>{title}</h2>}
-      <PieChartComponent width={450} height={300}>
+      <PieChartComponent width={xs ? 280 : 450} height={xs ? 400 : 300}>
         <Legend
-          layout="vertical"
+          layout={xs ? "horizontal" : "vertical"}
           align="right"
-          verticalAlign="middle"
+          verticalAlign={xs ? "bottom" : "middle"}
           content={renderLegend}
         />
         <Pie

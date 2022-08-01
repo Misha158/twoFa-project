@@ -3,7 +3,7 @@ import { PieChart as PieChartComponent, Pie, Label, Cell } from "recharts";
 import { getColors, getText } from "./helpers";
 import "./style.css";
 import { PieBackground, PieContainerStyled } from "./styled";
-import { Button } from "antd";
+import { Button, Grid } from "antd";
 
 /*const getRandomPieValue = ({ setValue, setData }) => {
   const randomValue = Math.floor(Math.random() * (100 + 1));
@@ -25,6 +25,8 @@ export const PieChartGradient = ({ title, initialValue, size = "normal" }) => {
   const [value, setValue] = useState(initialValue || null);
   const [data, setData] = useState(null);
   const randomValue = Math.floor(Math.random() * (100 + 1));
+  const { useBreakpoint } = Grid;
+  const { lg } = useBreakpoint();
 
   const colors = getColors(value);
 
@@ -47,7 +49,8 @@ export const PieChartGradient = ({ title, initialValue, size = "normal" }) => {
     <div
       style={{
         position: "relative",
-        minWidth: size !== "small" ? "250px" : "",
+        width: size !== "small" ? "250px" : "",
+        margin: !lg && "0 auto",
       }}
     >
       {/*      <Button

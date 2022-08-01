@@ -1,6 +1,6 @@
 import React from "react";
 import { Layout, Card, PieChart, PieChartGradient } from "../../components";
-import { Col, Row, Statistic } from "antd";
+import { Col, Row, Statistic, Grid } from "antd";
 import styled from "styled-components";
 import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/all";
 import { Line } from "../../components/charts/line/Line";
@@ -9,13 +9,20 @@ const ItemContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
   padding: 20px 40px;
+  margin: 0 20px 20px 20px;
   background-color: #1890ff;
   border-radius: 10px;
   color: white;
 
   .ant-statistic-title {
     color: ${({ isGrow }) => (isGrow ? "rgb(142, 255, 86)" : "darkred")};
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    text-align: center;
   }
 `;
 
@@ -52,16 +59,30 @@ const cards = [
 ];
 
 export const Dashboard = () => {
+  const { useBreakpoint } = Grid;
+  const { xl, xxl } = useBreakpoint();
+
+  console.log(useBreakpoint());
+
   return (
     <Layout title="Dashboard">
       <Card>
         <Row style={{ display: "flex" }}>
-          <Col span={4}>
+          <Col xxl={4} xl={6} lg={8} md={24} sm={24} xs={24}>
             <PieChartGradient title="score" />
           </Col>
           <Col
-            span={20}
-            style={{ display: "flex", justifyContent: "space-between" }}
+            xxl={20}
+            xl={18}
+            lg={16}
+            md={24}
+            sm={24}
+            xs={24}
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              flexWrap: "wrap",
+            }}
           >
             {cards.map((card) => (
               <ItemContainer isGrow={card.diff > 50} key={card.value}>
@@ -98,10 +119,10 @@ export const Dashboard = () => {
             <PieChart title="Users" />
           </Col>
           <Col>
-            <Line title="Bitcoin" />
-          </Col>
-          <Col>
             <PieChart title="Money" />
+          </Col>
+          <Col span={24}>
+            <Line title="Bitcoin" />
           </Col>
         </Row>
       </Card>

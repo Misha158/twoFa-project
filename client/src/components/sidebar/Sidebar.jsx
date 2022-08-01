@@ -3,13 +3,21 @@ import { Container, MenuItemContainer } from "./styled";
 import { MenuItem } from "./MenuItem";
 import { Header } from "./Header";
 import { pages } from "./consts";
+import { Grid } from "antd";
 
 export const Sidebar = () => {
+  const { useBreakpoint } = Grid;
+  const { md } = useBreakpoint();
+
   const [isOpen, setIsOpen] = useState(true);
 
   const toggleMenu = () => {
     setIsOpen((prev) => !prev);
   };
+
+  if (!md) {
+    return <></>;
+  }
 
   return (
     <Container isOpen={isOpen}>

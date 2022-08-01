@@ -19,7 +19,8 @@ export const Login = observer(() => {
       alert("Ok");
       navigate("/two-fa");
     } catch (e) {
-      alert("Bad credentials, try again!");
+      console.log(e.message);
+      alert("Bad credentials, try again!", e.message);
     }
   };
 

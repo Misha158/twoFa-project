@@ -10,12 +10,16 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { data } from "./data";
+import { Grid } from "antd";
 
-export const Line = ({ title }) => {
+export const Line = ({ title, width }) => {
+  const { useBreakpoint } = Grid;
+  const { xs } = useBreakpoint();
+
   return (
-    <div style={{ width: "700px", height: "300px" }}>
+    <div style={{ minWidth: xs ? "300px" : "500px", height: "300px" }}>
       {title && <h2>{title}</h2>}
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width="100%" height="100%" className={"catdog"}>
         <LineChart
           width={500}
           height={300}
