@@ -2,6 +2,8 @@ import {
   AiFillHome,
   AiOutlineTable,
   AiOutlineOrderedList,
+  AiOutlineHolder,
+  AiOutlineExpand,
 } from "react-icons/ai";
 import React from "react";
 import { routes } from "../../consts/routes";
@@ -23,5 +25,10 @@ export const pages = [
     name: "Virtualized",
     icon: <AiOutlineOrderedList style={defaultStyles} />,
     url: routes.virtualized,
+  },
+  {
+    name: "Tic tac toe",
+    icon: <AiOutlineExpand style={defaultStyles} />,
+    url: routes.ticTacToe,
   },
 ];

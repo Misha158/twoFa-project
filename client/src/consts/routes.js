@@ -7,4 +7,5 @@ export const routes = {
   exel: "/exel",
   settings: "/settings",
   virtualized: "/virtualized",
+  ticTacToe: "/tic-tac-toe",
 };
