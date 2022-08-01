@@ -59,11 +59,6 @@ const cards = [
 ];
 
 export const Dashboard = () => {
-  const { useBreakpoint } = Grid;
-  const { xl, xxl } = useBreakpoint();
-
-  console.log(useBreakpoint());
-
   return (
     <Layout title="Dashboard">
       <Card>
@@ -121,9 +116,9 @@ export const Dashboard = () => {
           <Col>
             <PieChart title="Money" />
           </Col>
-          <Col span={24}>
+          {/*          <Col span={24}>
             <Line title="Bitcoin" />
-          </Col>
+          </Col>*/}
         </Row>
       </Card>
     </Layout>

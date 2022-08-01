@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   LineChart,
   Line as LineChartComponent,
@@ -15,6 +15,8 @@ import { Grid } from "antd";
 export const Line = ({ title, width }) => {
   const { useBreakpoint } = Grid;
   const { xs } = useBreakpoint();
+
+  console.log("rerender");
 
   return (
     <div style={{ minWidth: xs ? "300px" : "500px", height: "300px" }}>
