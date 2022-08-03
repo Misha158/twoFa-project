@@ -45,6 +45,7 @@ export const TicTacToe = () => {
             winner={winner}
             setBoard={setBoard}
             setWinner={setWinner}
+            setCountStep={setCountStep}
           />
         )}
       </Card>

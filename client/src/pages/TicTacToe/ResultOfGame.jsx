@@ -1,10 +1,17 @@
 import React from "react";
 import { Button } from "antd";
 
-export const ResultOfGame = ({ noWinner, winner, setBoard, setWinner }) => {
+export const ResultOfGame = ({
+  noWinner,
+  winner,
+  setBoard,
+  setWinner,
+  setCountStep,
+}) => {
   const onClick = () => {
     setBoard(Array(9).fill(null));
     setWinner(null);
+    setCountStep(0);
   };
 
   const result = noWinner ? (
