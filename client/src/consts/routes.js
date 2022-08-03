@@ -8,4 +8,5 @@ export const routes = {
   settings: "/settings",
   virtualized: "/virtualized",
   ticTacToe: "/tic-tac-toe",
+  supportRequest: "/support_request",
 };

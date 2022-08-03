@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { Avatar, Button, Dropdown, Menu } from "antd";
 import { AiOutlineDown } from "react-icons/ai";
 import store from "../../store/store";
+import { useNavigate } from "react-router-dom";
+import { routes } from "../../consts/routes";
 
 const HeaderContainer = styled.div`
   background-color: paleturquoise;
@@ -31,9 +33,16 @@ const menu = (
 );
 
 export const Header = () => {
+  const navigate = useNavigate();
+
+  const onSendMessage = () => {
+    navigate(routes.supportRequest);
+  };
   return (
     <HeaderContainer>
-      <Button style={{ marginRight: 20 }}>Send message</Button>
+      <Button style={{ marginRight: 20 }} onClick={onSendMessage}>
+        Send message
+      </Button>
       <div style={{ display: "flex", alignItems: "center" }}>
         <Avatar
           style={{ backgroundColor: "salmon", verticalAlign: "middle" }}

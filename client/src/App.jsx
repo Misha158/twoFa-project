@@ -17,6 +17,7 @@ import {
   Excel,
   Virtualized,
   TicTacToe,
+  SupportRequest,
 } from "./pages";
 import { routes } from "./consts/routes";
 
@@ -39,6 +40,11 @@ export const App = observer(() => {
           <Route path={routes.exel} exact element={<Excel />} />
           <Route path={routes.virtualized} exact element={<Virtualized />} />
           <Route path={routes.ticTacToe} exact element={<TicTacToe />} />
+          <Route
+            path={routes.supportRequest}
+            exact
+            element={<SupportRequest />}
+          />
         </Route>
       </Routes>
     </>
