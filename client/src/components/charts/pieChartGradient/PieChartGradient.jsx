@@ -26,7 +26,9 @@ export const PieChartGradient = ({ title, initialValue, size = "normal" }) => {
   const [data, setData] = useState(null);
   const randomValue = Math.floor(Math.random() * (100 + 1));
   const { useBreakpoint } = Grid;
-  const { lg } = useBreakpoint();
+  const { lg, sm, xs, md } = useBreakpoint();
+
+  const isMobile = !md && (sm || xs);
 
   const colors = getColors(value);
 
@@ -70,10 +72,11 @@ export const PieChartGradient = ({ title, initialValue, size = "normal" }) => {
           Score
         </h2>
       )}
-      <PieBackground size={size} />
+      <PieBackground size={size} isMobile={isMobile} />
       <PieContainerStyled
         text={size === "normal" ? getText(value) : null}
         size={size}
+        isMobile={isMobile}
       >
         <PieChartComponent
           width={size === "normal" ? 250 : 75}
