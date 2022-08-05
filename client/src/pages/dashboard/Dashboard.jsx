@@ -61,7 +61,7 @@ const cards = [
 export const Dashboard = () => {
   return (
     <Layout title="Dashboard">
-      <Card title="Dashboard">
+      <Card>
         <Row style={{ display: "flex" }}>
           <Col xxl={4} xl={6} lg={8} md={24} sm={24} xs={24}>
             <PieChartGradient title="score" />
@@ -108,7 +108,6 @@ export const Dashboard = () => {
           </Col>
         </Row>
       </Card>
-
       <Card title="charts" withSmallPiechart>
         <Row style={{ display: "flex", justifyContent: "space-between" }}>
           <Col>
@@ -117,14 +116,11 @@ export const Dashboard = () => {
           <Col>
             <PieChart title="Money" />
           </Col>
+          {/*          <Col span={24}>
+            <Line title="Bitcoin" />
+          </Col>*/}
         </Row>
       </Card>
     </Layout>
   );
 };
-
-{
-  /*          <Col span={24}>
-            <Line title="Bitcoin" />
-          </Col>*/
-}
