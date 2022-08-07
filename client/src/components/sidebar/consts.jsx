@@ -31,4 +31,9 @@ export const pages = [
     icon: <AiOutlineExpand style={defaultStyles} />,
     url: routes.ticTacToe,
   },
+  {
+    name: "Todo list with drag n drop",
+    icon: <AiOutlineExpand style={defaultStyles} />,
+    url: routes.todolistDrag,
+  },
 ];

@@ -7,3 +7,4 @@ export { Virtualized } from "./Virtualized/Virtualized";
 export { TicTacToe } from "./TicTacToe/TicTacToe";
 export { SupportRequest } from "./SupportRequest/SupportRequest";
 export { Test } from "./Test/Test";
+export { TodoListDrag } from "./TodoListDrag/TodoListDrag";

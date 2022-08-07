@@ -10,4 +10,5 @@ export const routes = {
   ticTacToe: "/tic-tac-toe",
   supportRequest: "/support_request",
   test: "/test",
+  todolistDrag: "/todolist_drag",
 };

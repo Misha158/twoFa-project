@@ -24,6 +24,7 @@ export const MenuItemLink = styled.div`
 export const MenuItem = styled(Link)`
   display: flex;
   justify-content: ${({ $isOpen }) => !$isOpen && "center"};
+  align-items: center;
   padding: 10px 15px;
   margin: 10px 0;
   background-color: ${({ $isActive }) => $isActive && "#6e6e6e"};
