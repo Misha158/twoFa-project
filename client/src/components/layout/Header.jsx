@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { Avatar, Button, Dropdown, Menu } from "antd";
+import { Avatar, Dropdown, Menu } from "antd";
 import { AiOutlineDown } from "react-icons/ai";
 import store from "../../store/store";
 import { useNavigate } from "react-router-dom";
 import { routes } from "../../consts/routes";
+import { Button } from "./styled";
 
 const HeaderContainer = styled.div`
   background-color: paleturquoise;
@@ -40,9 +41,8 @@ export const Header = () => {
   };
   return (
     <HeaderContainer>
-      <Button style={{ marginRight: 20 }} onClick={onSendMessage}>
-        Send message
-      </Button>
+      <Button onClick={() => navigate(routes.test)}>Test page</Button>
+      <Button onClick={onSendMessage}>Send message</Button>
       <div style={{ display: "flex", alignItems: "center" }}>
         <Avatar
           style={{ backgroundColor: "salmon", verticalAlign: "middle" }}

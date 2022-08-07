@@ -9,4 +9,5 @@ export const routes = {
   virtualized: "/virtualized",
   ticTacToe: "/tic-tac-toe",
   supportRequest: "/support_request",
+  test: "/test",
 };

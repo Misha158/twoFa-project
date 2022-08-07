@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PhoneInputComponent from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import { Card, Layout } from "../../components";
+import { Card, Layout, MaterialTable } from "../../components";
 
 import { Input } from "antd";
 import { useDebounce } from "../../hooks/useDebounce";

@@ -18,6 +18,7 @@ import {
   Virtualized,
   TicTacToe,
   SupportRequest,
+  Test,
 } from "./pages";
 import { routes } from "./consts/routes";
 
@@ -34,17 +35,14 @@ export const App = observer(() => {
         <Route path={routes.registration} element={<Registration />} />
         <Route path="/two-fa" element={<TwoFA />} />
 
-        <Route path="/" exact element={<ProtectedRoutes />}>
-          <Route path="/" exact element={<Dashboard />} />
-          <Route path={routes.dashboard} exact element={<Dashboard />} />
-          <Route path={routes.exel} exact element={<Excel />} />
-          <Route path={routes.virtualized} exact element={<Virtualized />} />
-          <Route path={routes.ticTacToe} exact element={<TicTacToe />} />
-          <Route
-            path={routes.supportRequest}
-            exact
-            element={<SupportRequest />}
-          />
+        <Route path="/" element={<ProtectedRoutes />}>
+          <Route path="/" element={<Dashboard />} />
+          <Route path={routes.dashboard} element={<Dashboard />} />
+          <Route path={routes.exel} element={<Excel />} />
+          <Route path={routes.virtualized} element={<Virtualized />} />
+          <Route path={routes.ticTacToe} element={<TicTacToe />} />
+          <Route path={routes.supportRequest} element={<SupportRequest />} />
+          <Route path={routes.test} element={<Test />} />
         </Route>
       </Routes>
     </>
