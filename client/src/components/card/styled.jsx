@@ -17,6 +17,7 @@ export const Content = styled.div`
     (isMobile && isOpenCard) || !isMobile ? "20px" : ""};
   height: ${({ isOpenCard, md, parrentRef }) =>
     isOpenCard || md ? `${parrentRef?.current?.scrollHeight}px` : "0px"};
-  overflow: hidden;
+  overflow: ${({ isMobile, isOpenCard }) =>
+    isMobile && !isOpenCard ? "hidden" : ""};
   transition: ${({ md }) => (md ? "" : "all 0.3s ease-in-out")};
 `;
