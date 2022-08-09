@@ -36,4 +36,9 @@ export const pages = [
     icon: <AiOutlineExpand style={defaultStyles} />,
     url: routes.todolistDrag,
   },
+  {
+    name: "Table origin",
+    icon: <AiOutlineExpand style={defaultStyles} />,
+    url: routes.tableOrigin,
+  },
 ];

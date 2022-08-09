@@ -11,4 +11,5 @@ export const routes = {
   supportRequest: "/support_request",
   test: "/test",
   todolistDrag: "/todolist_drag",
+  tableOrigin: "/table_origin",
 };

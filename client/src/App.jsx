@@ -20,6 +20,7 @@ import {
   SupportRequest,
   Test,
   TodoListDrag,
+  TableOrigin,
 } from "./pages";
 import { routes } from "./consts/routes";
 
@@ -44,6 +45,7 @@ export const App = observer(() => {
           <Route path={routes.ticTacToe} element={<TicTacToe />} />
           <Route path={routes.supportRequest} element={<SupportRequest />} />
           <Route path={routes.todolistDrag} element={<TodoListDrag />} />
+          <Route path={routes.tableOrigin} element={<TableOrigin />} />
           <Route path={routes.test} element={<Test />} />
         </Route>
       </Routes>
