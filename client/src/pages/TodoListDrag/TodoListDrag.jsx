@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button } from "antd";
+import Draggable from "react-draggable";
 import { Card, Layout } from "../../components";
 import { InputStyled } from "./styled";
 
@@ -7,7 +8,16 @@ export const TodoListDrag = () => {
   const [todoItems, setTodoItems] = useState([]);
 
   const onFinish = (values) => {
-    setTodoItems((prevItems) => [...prevItems, { name: values.todo }]);
+    setTodoItems((prevItems) => [
+      ...prevItems,
+      {
+        name: values.todo,
+        defaultPosition: {
+          x: Math.floor(Math.random() * (600 + 1)),
+          y: Math.floor(Math.random() * (100 + 1)),
+        },
+      },
+    ]);
   };
 
   return (
@@ -32,7 +42,20 @@ export const TodoListDrag = () => {
         </div>
         <div>
           {todoItems?.map((todo) => (
-            <div key={todo.name}>{todo.name}</div>
+            <Draggable defaultPosition={todo.defaultPosition}>
+              <div
+                key={todo.name}
+                style={{
+                  padding: "7px",
+                  margin: "7px 0",
+                  backgroundColor: "saddlebrown",
+                  position: "absolute",
+                  width: 100,
+                }}
+              >
+                {todo.name}
+              </div>
+            </Draggable>
           ))}
         </div>
       </Card>
