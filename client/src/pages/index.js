@@ -9,3 +9,4 @@ export { SupportRequest } from "./SupportRequest/SupportRequest";
 export { Test } from "./Test/Test";
 export { TodoListDrag } from "./TodoListDrag/TodoListDrag";
 export { TableOrigin } from "./TableOrigin/TableOrigin";
+export { GraphQL } from "./GraphQL/GraphQL";

@@ -41,4 +41,9 @@ export const pages = [
     icon: <AiOutlineExpand style={defaultStyles} />,
     url: routes.tableOrigin,
   },
+  {
+    name: "GraphQL",
+    icon: <AiOutlineExpand style={defaultStyles} />,
+    url: routes.graphql,
+  },
 ];

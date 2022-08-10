@@ -12,4 +12,5 @@ export const routes = {
   test: "/test",
   todolistDrag: "/todolist_drag",
   tableOrigin: "/table_origin",
+  graphql: "/graphql",
 };

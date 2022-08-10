@@ -21,6 +21,7 @@ import {
   Test,
   TodoListDrag,
   TableOrigin,
+  GraphQL,
 } from "./pages";
 import { routes } from "./consts/routes";
 
@@ -46,6 +47,7 @@ export const App = observer(() => {
           <Route path={routes.supportRequest} element={<SupportRequest />} />
           <Route path={routes.todolistDrag} element={<TodoListDrag />} />
           <Route path={routes.tableOrigin} element={<TableOrigin />} />
+          <Route path={routes.graphql} element={<GraphQL />} />
           <Route path={routes.test} element={<Test />} />
         </Route>
       </Routes>
