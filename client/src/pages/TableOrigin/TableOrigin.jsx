@@ -1,5 +1,5 @@
-import React from "react";
-import { Card, Layout } from "../../components";
+import React, { useState, useRef } from "react";
+import { Card, Collapsible, Layout } from "../../components";
 import { columnHeaders, columnContents } from "./column";
 import { ColumnCell, ColumnHeader } from "./styled";
 import { useQuery } from "@apollo/client";
@@ -11,6 +11,7 @@ export const TableOrigin = () => {
   return (
     <Layout>
       <Card>
+        {/*<Collapsible />*/}
         <table style={{ width: "100%", border: "1px solid black" }}>
           <thead>
             <tr>
