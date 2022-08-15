@@ -1,5 +1,7 @@
 import React from "react";
 import { Card, Layout } from "../../components";
+import { columnHeaders, columnContents } from "./column";
+import { ColumnCell, ColumnHeader } from "./styled";
 
 export const TableOrigin = () => {
   return (
@@ -7,20 +9,21 @@ export const TableOrigin = () => {
       <Card>
         <table style={{ width: "100%", border: "1px solid black" }}>
           <thead>
-            <th style={{ border: "1px solid black" }}>Курс обучения</th>
-            <th style={{ border: "1px solid black" }}>Дни</th>
-            <th style={{ border: "1px solid black" }}>Часы</th>
-            <th style={{ border: "1px solid black" }}>Ранняя регистрация</th>
-            <th style={{ border: "1px solid black" }}>Поздняя регистрация</th>
+            <tr>
+              {columnHeaders.map((headCol) => (
+                <ColumnHeader key={headCol}>{headCol}</ColumnHeader>
+              ))}
+            </tr>
           </thead>
           <tbody>
-            <tr>
-              <td style={{ border: "1px solid black" }}>Misha</td>
-
-              <td style={{ border: "1px solid black" }}>Sv</td>
-
-              <td style={{ border: "1px solid black" }}>25</td>
-            </tr>
+            {columnContents.map((content) => (
+              <tr key={content.name}>
+                <ColumnCell>{content.name}</ColumnCell>
+                <ColumnCell>{content.surname}</ColumnCell>
+                <ColumnCell>{content.age}</ColumnCell>
+                <ColumnCell>{content.time}</ColumnCell>
+              </tr>
+            ))}
           </tbody>
         </table>
       </Card>
