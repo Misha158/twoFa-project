@@ -2,8 +2,12 @@ import React from "react";
 import { Card, Layout } from "../../components";
 import { columnHeaders, columnContents } from "./column";
 import { ColumnCell, ColumnHeader } from "./styled";
+import { useQuery } from "@apollo/client";
+import { GET_TABLE } from "./query";
 
 export const TableOrigin = () => {
+  const { data: tableData, loading, error, refetch } = useQuery(GET_TABLE);
+
   return (
     <Layout>
       <Card>
@@ -16,7 +20,7 @@ export const TableOrigin = () => {
             </tr>
           </thead>
           <tbody>
-            {columnContents.map((content) => (
+            {tableData?.getTable.map((content) => (
               <tr key={content.name}>
                 <ColumnCell>{content.name}</ColumnCell>
                 <ColumnCell>{content.surname}</ColumnCell>

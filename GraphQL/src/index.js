@@ -2,6 +2,7 @@ const express = require("express");
 const { graphqlHTTP } = require("express-graphql");
 const cors = require("cors");
 const schema = require("./schema");
+const tableData = require("./data");
 const users = [{ id: 1, username: "Vasya", age: 25 }];
 
 const app = express();
@@ -25,6 +26,11 @@ const root = {
     const user = createUser(input);
     users.push(user);
     return user;
+  },
+
+  getTable: () => {
+    console.log(tableData);
+    return tableData;
   },
 };
 
