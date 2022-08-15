@@ -12,12 +12,14 @@ export const Title = styled.h2`
   margin-bottom: 0;
 `;
 
-export const Content = styled.div`
+export const Parent = styled.div`
   margin-top: ${({ isMobile, isOpenCard }) =>
     (isMobile && isOpenCard) || !isMobile ? "20px" : ""};
-  height: ${({ isOpenCard, md, parrentRef }) =>
-    isOpenCard || md ? `${parrentRef?.current?.scrollHeight}px` : "0px"};
-  overflow: ${({ isMobile, isOpenCard }) =>
-    isMobile && !isOpenCard ? "hidden" : ""};
-  transition: ${({ md }) => (md ? "" : "all 0.3s ease-in-out")};
+  overflow: ${({ md }) => (md ? "" : "hidden")};
+  transition: ${({ md }) => (md ? "" : "all 0.3s ease")};
+
+  ${({ isOpenCard, parrentRef, md }) =>
+    md
+      ? `height: auto`
+      : ` height: ${isOpenCard ? `${parrentRef?.current?.scrollHeight}px` : 0}`}
 `;
