@@ -4,6 +4,7 @@ import { columnHeaders, columnContents } from "./column";
 import { ColumnCell, ColumnHeader } from "./styled";
 import { useQuery } from "@apollo/client";
 import { GET_TABLE } from "./query";
+import { ReactTableLib } from "./ReactTableLib/ReactTableLib";
 
 export const TableOrigin = () => {
   const { data: tableData, loading, error, refetch } = useQuery(GET_TABLE);
@@ -12,7 +13,8 @@ export const TableOrigin = () => {
     <Layout>
       <Card>
         {/*<Collapsible />*/}
-        <table style={{ width: "100%", border: "1px solid black" }}>
+        <ReactTableLib />
+        {/* <table style={{ width: "100%", border: "1px solid black" }}>
           <thead>
             <tr>
               {columnHeaders.map((headCol) => (
@@ -30,7 +32,7 @@ export const TableOrigin = () => {
               </tr>
             ))}
           </tbody>
-        </table>
+        </table>*/}
       </Card>
     </Layout>
   );
