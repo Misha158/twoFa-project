@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useTable, useGlobalFilter } from "react-table";
+import { useTable, useGlobalFilter, useSortBy } from "react-table";
 import { StyledInput, Styles } from "./styled";
 import { TableHead } from "./TableHead";
 import { data } from "./data";
@@ -10,7 +10,7 @@ import { GlobalFilter } from "./GlobalFilter";
 export const ReactTableLib = () => {
   const [inputValue, setInputValue] = useState("");
 
-  const tableInstance = useTable({ columns, data }, useGlobalFilter);
+  const tableInstance = useTable({ columns, data }, useGlobalFilter, useSortBy);
 
   const {
     getTableProps,
@@ -36,7 +36,7 @@ export const ReactTableLib = () => {
         setGlobalFilter={setGlobalFilter}
       />
       <table {...getTableProps()}>
-        <TableHead headerGroups={headerGroups} />
+        <TableHead headerGroups={headerGroups} sort />
         <TableBody
           getTableBodyProps={getTableBodyProps}
           rows={rows}

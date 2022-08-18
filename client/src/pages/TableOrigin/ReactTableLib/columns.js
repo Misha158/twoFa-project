@@ -7,4 +7,8 @@ export const columns = [
     Header: "Column 2",
     accessor: "col2",
   },
+  {
+    Header: "Column 3",
+    accessor: "col3",
+  },
 ];
