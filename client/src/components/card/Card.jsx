@@ -30,11 +30,6 @@ export const Card = ({ children, title, withSmallPiechart }) => {
     RouterStore.goBack();
     navigate(-1);
   };
-  // console.log(toJS(RouterStore.routes));
-
-  // console.log(RouterStore.routes[RouterStore.routes.length - 2]);
-
-  console.log(toJS(RouterStore.routes.length));
 
   return (
     <Wrapper onClick={onClickCard} isMobile={isMobile}>
