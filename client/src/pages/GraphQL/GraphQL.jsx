@@ -24,8 +24,6 @@ export const GraphQL = () => {
     }
   }, [data]);
 
-  console.log(users);
-
   const onChange = (event) => {
     setUsername(event.target.value);
   };

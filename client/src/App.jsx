@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import store from "./store/store";
+import RouterStore from "./store/RouterStore";
 import { observer } from "mobx-react";
 import {
   BrowserRouter,
@@ -7,6 +8,7 @@ import {
   Outlet,
   Route,
   Routes,
+  useLocation,
   useNavigate,
 } from "react-router-dom";
 import {
@@ -24,6 +26,7 @@ import {
   GraphQL,
 } from "./pages";
 import { routes } from "./consts/routes";
+import { toJS } from "mobx";
 
 const ProtectedRoutes = () => {
   const isAuth = store.authData.isAuth;
@@ -31,6 +34,16 @@ const ProtectedRoutes = () => {
 };
 
 export const App = observer(() => {
+  const location = useLocation();
+
+  const [historyPages, setHistoryPages] = useState([]);
+
+  useEffect(() => {
+    RouterStore.changeRoutes({ route: location.pathname });
+    setHistoryPages((prev) => [...prev, location.pathname]);
+  }, [location.pathname]);
+
+  // console.log(toJS(RouterStore.routes));
   return (
     <>
       <Routes>
