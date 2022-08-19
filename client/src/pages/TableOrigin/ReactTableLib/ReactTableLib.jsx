@@ -6,7 +6,7 @@ import { data } from "./data";
 import { columns } from "./columns";
 import { TableBody } from "./TableBody";
 import { GlobalFilter } from "./GlobalFilter";
-import { AddNewRow } from "./components/AddNewRow";
+import { AddNewRow } from "./components/AddNewRow/AddNewRow";
 
 export const ReactTableLib = () => {
   const [inputValue, setInputValue] = useState("");
