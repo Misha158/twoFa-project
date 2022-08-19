@@ -28,6 +28,12 @@ const root = {
     return user;
   },
 
+  createRowInTable: ({ input }) => {
+    const newRow = { ...input };
+    reactTableData.push(newRow);
+    return newRow;
+  },
+
   getTable: () => {
     console.log(tableData);
     return tableData;

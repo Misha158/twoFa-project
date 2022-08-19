@@ -7,11 +7,13 @@ import { TableBody } from "./TableBody";
 import { GlobalFilter } from "./GlobalFilter";
 import { AddNewRow } from "./components/AddNewRow/AddNewRow";
 import { data as dataHardcore } from "./data";
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { GET_TABLE_DATA } from "./query/tableQuery";
+import { CREATE_ROW } from "./mutation/tableMutation";
 
 export const ReactTableLib = () => {
   const { data, loading, error, refetch } = useQuery(GET_TABLE_DATA);
+  const [newRow] = useMutation(CREATE_ROW);
   const [inputValue, setInputValue] = useState("");
   const [dataTable, setDataTable] = useState([]);
   console.log(dataTable);
@@ -46,7 +48,7 @@ export const ReactTableLib = () => {
   return (
     <Styles>
       {/*<StyledInput value={inputValue} onChange={onChangeInput} />*/}
-      <AddNewRow />
+      <AddNewRow newRow={newRow} refetch={refetch} />
       <GlobalFilter
         globalFilter={state.globalFilter}
         preGlobalFilteredRows={preGlobalFilteredRows}

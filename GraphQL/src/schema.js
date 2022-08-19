@@ -35,6 +35,12 @@ const schema = buildSchema(`
         posts: [PostInput]
     }
     
+    input TableRowInput {
+        col1: String!
+        col2: String!
+        col3: Int!
+    }
+    
     input PostInput {
         id: ID
         title: String!
@@ -46,10 +52,12 @@ const schema = buildSchema(`
         getTable: [Table]
         getUser(id: ID): User
         getReactTable: [ReactTable]
+        
     }
     
     type Mutation {
         createUser(input: UserInput): User
+        createRowInTable(input: TableRowInput): ReactTable
     }
 `);
 
