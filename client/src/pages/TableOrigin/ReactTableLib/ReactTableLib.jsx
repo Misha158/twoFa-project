@@ -13,22 +13,13 @@ import { CREATE_ROW } from "./mutation/tableMutation";
 
 export const ReactTableLib = () => {
   const { data, loading, error, refetch } = useQuery(GET_TABLE_DATA);
-
   const [newRow] = useMutation(CREATE_ROW);
-  const [inputValue, setInputValue] = useState("");
   const [dataTable, setDataTable] = useState([]);
-  const [dataTableFiltered, setDataTableFiltered] = useState([]);
-
-  /*  useEffect(() => {
-    if (!loading) {
-      setDataTable(data.getReactTable);
-    }
-  }, [data]);*/
 
   const tableInstance = useTable(
     {
       columns,
-      data: dataTableFiltered || [],
+      data: dataTable || [],
       manualSortBy: true,
       manualGlobalFilter: true,
     },
@@ -47,21 +38,13 @@ export const ReactTableLib = () => {
     setGlobalFilter,
   } = tableInstance;
 
-  const onChangeInput = (event) => {
-    setInputValue(event.target.value);
-  };
-
-  console.log("CAT-DATA", dataTableFiltered);
-
   return (
     <Styles>
-      {/*<StyledInput value={inputValue} onChange={onChangeInput} />*/}
       <AddNewRow newRow={newRow} refetch={refetch} />
       <GlobalFilter
         globalFilter={state.globalFilter}
         preGlobalFilteredRows={preGlobalFilteredRows}
         setGlobalFilter={setGlobalFilter}
-        setDataTableFiltered={setDataTableFiltered}
         setDataTable={setDataTable}
         data={data}
         loading={loading}
