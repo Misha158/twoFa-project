@@ -8,23 +8,30 @@ import { GlobalFilter } from "./GlobalFilter";
 import { AddNewRow } from "./components/AddNewRow/AddNewRow";
 import { data as dataHardcore } from "./data";
 import { useMutation, useQuery } from "@apollo/client";
-import { GET_TABLE_DATA } from "./query/tableQuery";
+import { GET_TABLE_DATA, GET_TABLE_DATA_FILTERED } from "./query/tableQuery";
 import { CREATE_ROW } from "./mutation/tableMutation";
 
 export const ReactTableLib = () => {
   const { data, loading, error, refetch } = useQuery(GET_TABLE_DATA);
+
   const [newRow] = useMutation(CREATE_ROW);
   const [inputValue, setInputValue] = useState("");
   const [dataTable, setDataTable] = useState([]);
+  const [dataTableFiltered, setDataTableFiltered] = useState([]);
 
-  useEffect(() => {
+  /*  useEffect(() => {
     if (!loading) {
       setDataTable(data.getReactTable);
     }
-  }, [data]);
+  }, [data]);*/
 
   const tableInstance = useTable(
-    { columns, data: dataTable, manualSortBy: true, manualGlobalFilter: true },
+    {
+      columns,
+      data: dataTableFiltered || [],
+      manualSortBy: true,
+      manualGlobalFilter: true,
+    },
     useGlobalFilter,
     useSortBy
   );
@@ -44,7 +51,7 @@ export const ReactTableLib = () => {
     setInputValue(event.target.value);
   };
 
-  console.log(state.sortBy);
+  console.log("CAT-DATA", dataTableFiltered);
 
   return (
     <Styles>
@@ -54,6 +61,10 @@ export const ReactTableLib = () => {
         globalFilter={state.globalFilter}
         preGlobalFilteredRows={preGlobalFilteredRows}
         setGlobalFilter={setGlobalFilter}
+        setDataTableFiltered={setDataTableFiltered}
+        setDataTable={setDataTable}
+        data={data}
+        loading={loading}
       />
       <table {...getTableProps()}>
         <TableHead headerGroups={headerGroups} sort />

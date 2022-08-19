@@ -23,6 +23,16 @@ const root = {
     return users.find((user) => user.id == id);
   },
   getReactTableFiltering: ({ search }) => {
+    console.log(
+      "CAT",
+      reactTableData.filter(
+        (row) =>
+          row.col1.toLowerCase().includes(search.toLowerCase()) ||
+          row.col2.toLowerCase().includes(search.toLowerCase()) ||
+          String(row.col3).toLowerCase().includes(search.toLowerCase())
+      )
+    );
+
     return reactTableData.filter(
       (row) =>
         row.col1.toLowerCase().includes(search.toLowerCase()) ||

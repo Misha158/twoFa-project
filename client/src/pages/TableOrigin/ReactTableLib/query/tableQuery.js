@@ -9,3 +9,13 @@ export const GET_TABLE_DATA = gql`
     }
   }
 `;
+
+export const GET_TABLE_DATA_FILTERED = gql`
+  query getReactTableFiltering($search: String) {
+    getReactTableFiltering(search: $search) {
+      col1
+      col2
+      col3
+    }
+  }
+`;
