@@ -22,6 +22,15 @@ const root = {
   getUser: ({ id }) => {
     return users.find((user) => user.id == id);
   },
+  getReactTableFiltering: ({ search }) => {
+    return reactTableData.filter(
+      (row) =>
+        row.col1.toLowerCase().includes(search.toLowerCase()) ||
+        row.col2.toLowerCase().includes(search.toLowerCase()) ||
+        String(row.col3).toLowerCase().includes(search.toLowerCase())
+    );
+  },
+
   createUser: ({ input }) => {
     const user = createUser(input);
     users.push(user);
