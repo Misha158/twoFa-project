@@ -52,6 +52,7 @@ const schema = buildSchema(`
         getTable: [Table]
         getUser(id: ID): User
         getReactTable: [ReactTable]
+        getReactTableFiltering(search: String): [ReactTable]
         
     }
     
