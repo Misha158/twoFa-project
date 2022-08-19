@@ -2,6 +2,12 @@ const { buildSchema } = require("graphql");
 
 const schema = buildSchema(`
 
+    type ReactTable {
+        col1: String
+        col2: String
+        col3: Int
+    }
+
     type Table {
         name: String
         surname: String
@@ -39,6 +45,7 @@ const schema = buildSchema(`
         getAllUsers: [User]
         getTable: [Table]
         getUser(id: ID): User
+        getReactTable: [ReactTable]
     }
     
     type Mutation {

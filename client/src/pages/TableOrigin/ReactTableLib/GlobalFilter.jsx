@@ -7,7 +7,6 @@ export const GlobalFilter = ({
   globalFilter,
   setGlobalFilter,
 }) => {
-  console.log(globalFilter);
   const count = preGlobalFilteredRows.length;
   const [value, setValue] = React.useState(globalFilter);
   const onChange = useAsyncDebounce((value) => {

@@ -1,17 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTable, useGlobalFilter, useSortBy } from "react-table";
 import { StyledInput, Styles } from "./styled";
 import { TableHead } from "./TableHead";
-import { data } from "./data";
 import { columns } from "./columns";
 import { TableBody } from "./TableBody";
 import { GlobalFilter } from "./GlobalFilter";
 import { AddNewRow } from "./components/AddNewRow/AddNewRow";
+import { data as dataHardcore } from "./data";
+import { useQuery } from "@apollo/client";
+import { GET_TABLE_DATA } from "./query/tableQuery";
 
 export const ReactTableLib = () => {
+  const { data, loading, error, refetch } = useQuery(GET_TABLE_DATA);
   const [inputValue, setInputValue] = useState("");
+  const [dataTable, setDataTable] = useState([]);
+  console.log(dataTable);
 
-  const tableInstance = useTable({ columns, data }, useGlobalFilter, useSortBy);
+  useEffect(() => {
+    if (!loading) {
+      setDataTable(data.getReactTable);
+    }
+  }, [data]);
+
+  const tableInstance = useTable(
+    { columns, data: dataTable },
+    useGlobalFilter,
+    useSortBy
+  );
 
   const {
     getTableProps,
