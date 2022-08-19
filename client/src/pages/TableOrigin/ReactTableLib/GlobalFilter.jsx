@@ -15,7 +15,7 @@ export const GlobalFilter = ({
   }, 500);
 
   return (
-    <span>
+    <div style={{ marginBottom: "10px" }}>
       Search:{" "}
       <input
         value={value || ""}
@@ -29,6 +29,6 @@ export const GlobalFilter = ({
           border: "0",
         }}
       />
-    </span>
+    </div>
   );
 };

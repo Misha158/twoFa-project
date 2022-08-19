@@ -6,6 +6,7 @@ import { data } from "./data";
 import { columns } from "./columns";
 import { TableBody } from "./TableBody";
 import { GlobalFilter } from "./GlobalFilter";
+import { AddNewRow } from "./components/AddNewRow";
 
 export const ReactTableLib = () => {
   const [inputValue, setInputValue] = useState("");
@@ -30,6 +31,7 @@ export const ReactTableLib = () => {
   return (
     <Styles>
       {/*<StyledInput value={inputValue} onChange={onChangeInput} />*/}
+      <AddNewRow />
       <GlobalFilter
         globalFilter={state.globalFilter}
         preGlobalFilteredRows={preGlobalFilteredRows}
