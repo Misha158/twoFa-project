@@ -13,6 +13,11 @@ export const GlobalFilter = ({
     setGlobalFilter(value || undefined);
   }, 500);
 
+  React.useEffect(() => {
+    console.log("request on server");
+    // fetchData({ sortBy })
+  }, [globalFilter]);
+
   return (
     <div style={{ marginBottom: "10px" }}>
       Search:{" "}

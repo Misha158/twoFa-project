@@ -16,7 +16,6 @@ export const ReactTableLib = () => {
   const [newRow] = useMutation(CREATE_ROW);
   const [inputValue, setInputValue] = useState("");
   const [dataTable, setDataTable] = useState([]);
-  console.log(dataTable);
 
   useEffect(() => {
     if (!loading) {
@@ -25,7 +24,7 @@ export const ReactTableLib = () => {
   }, [data]);
 
   const tableInstance = useTable(
-    { columns, data: dataTable },
+    { columns, data: dataTable, manualSortBy: true, manualGlobalFilter: true },
     useGlobalFilter,
     useSortBy
   );
@@ -44,6 +43,8 @@ export const ReactTableLib = () => {
   const onChangeInput = (event) => {
     setInputValue(event.target.value);
   };
+
+  console.log(state.sortBy);
 
   return (
     <Styles>
