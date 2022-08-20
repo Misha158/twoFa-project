@@ -13,4 +13,5 @@ export const routes = {
   todolistDrag: "/todolist_drag",
   tableOrigin: "/table_origin",
   graphql: "/graphql",
+  chess: "/chess",
 };

@@ -11,3 +11,4 @@ export { TodoListDrag } from "./TodoListDrag/TodoListDrag";
 export { TableOrigin } from "./TableOrigin/TableOrigin";
 export { ReactTableLib } from "./TableOrigin/ReactTableLib/ReactTableLib";
 export { GraphQL } from "./GraphQL/GraphQL";
+export { Chess } from "./Chess/Chess";

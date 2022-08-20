@@ -25,6 +25,7 @@ import {
   TodoListDrag,
   TableOrigin,
   GraphQL,
+  Chess,
 } from "./pages";
 import { routes } from "./consts/routes";
 import { toJS } from "mobx";
@@ -63,6 +64,7 @@ export const App = observer(() => {
           <Route path={routes.tableOrigin} element={<TableOrigin />} />
           <Route path={routes.graphql} element={<GraphQL />} />
           <Route path={routes.test} element={<Test />} />
+          <Route path={routes.chess} element={<Chess />} />
         </Route>
       </Routes>
     </>
