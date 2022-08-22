@@ -55,7 +55,7 @@ export const ReactTableLib = () => {
   } = tableInstance;
 
   return (
-    <Styles>
+    <Styles data-testid="table">
       <AddNewRow newRow={newRow} refetch={refetch} />
       <GlobalFilter
         globalFilter={state.globalFilter}
