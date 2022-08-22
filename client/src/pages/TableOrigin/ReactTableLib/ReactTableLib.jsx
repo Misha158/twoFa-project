@@ -20,14 +20,13 @@ export const ReactTableLib = () => {
   const columns = React.useMemo(() => {
     return getColumns({
       onClick: async (value) => {
-        console.log(value.row.original.id);
         await deleteRow({
           variables: {
             input: value.row.original.id,
           },
         });
 
-        refetch();
+        await refetch();
       },
     });
   }, []);

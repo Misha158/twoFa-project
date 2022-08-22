@@ -16,18 +16,13 @@ import { MemoryRouter, BrowserRouter, Route, Routes } from "react-router-dom";
 describe("test", () => {
   it("should test", () => {
     const client = new ApolloClient({
-      // uri: "http://localhost:5000/graphql",
       link: new HttpLink({ uri: "http://localhost:5000/graphql", fetch }),
       cache: new InMemoryCache(),
     });
 
     render(
       <ApolloProvider client={client}>
-        <MemoryRouter initialEntries={["/table"]}>
-          <Routes>
-            <Route path="/table" element={<ReactTableLib />} />
-          </Routes>
-        </MemoryRouter>
+        <ReactTableLib />
       </ApolloProvider>
     );
     // expect(screen.getByText("Column 1")).toBeInTheDocument();
