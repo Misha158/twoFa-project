@@ -6,6 +6,7 @@ const schema = buildSchema(`
         col1: String
         col2: String
         col3: Int
+        id: ID!
     }
 
     type Table {
@@ -39,6 +40,7 @@ const schema = buildSchema(`
         col1: String!
         col2: String!
         col3: Int!
+        id: ID!
     }
     
     input PostInput {
@@ -59,6 +61,7 @@ const schema = buildSchema(`
     type Mutation {
         createUser(input: UserInput): User
         createRowInTable(input: TableRowInput): ReactTable
+        deleteRowInTable(input: ID): ReactTable
     }
 `);
 

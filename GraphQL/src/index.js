@@ -2,7 +2,7 @@ const express = require("express");
 const { graphqlHTTP } = require("express-graphql");
 const cors = require("cors");
 const schema = require("./schema");
-const { tableData, reactTableData } = require("./data");
+let { tableData, reactTableData } = require("./data");
 const users = [{ id: 1, username: "Vasya", age: 25 }];
 
 const app = express();
@@ -23,16 +23,6 @@ const root = {
     return users.find((user) => user.id == id);
   },
   getReactTableFiltering: ({ search }) => {
-    console.log(
-      "CAT",
-      reactTableData.filter(
-        (row) =>
-          row.col1.toLowerCase().includes(search.toLowerCase()) ||
-          row.col2.toLowerCase().includes(search.toLowerCase()) ||
-          String(row.col3).toLowerCase().includes(search.toLowerCase())
-      )
-    );
-
     return reactTableData.filter(
       (row) =>
         row.col1.toLowerCase().includes(search.toLowerCase()) ||
@@ -53,13 +43,21 @@ const root = {
     return newRow;
   },
 
+  deleteRowInTable: ({ input }) => {
+    console.log(reactTableData.find((row) => row.id === input));
+
+    reactTableData = reactTableData.filter((row) => row.id !== input);
+    return reactTableData.find((row) => row.id === input);
+    // const newRow = { ...input };
+    // reactTableData.push(newRow);
+    // return newRow;
+  },
+
   getTable: () => {
-    console.log(tableData);
     return tableData;
   },
 
   getReactTable: () => {
-    console.log(reactTableData);
     return reactTableData;
   },
 };

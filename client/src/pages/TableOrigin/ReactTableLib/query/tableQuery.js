@@ -6,6 +6,7 @@ export const GET_TABLE_DATA = gql`
       col1
       col2
       col3
+      id
     }
   }
 `;
@@ -16,6 +17,7 @@ export const GET_TABLE_DATA_FILTERED = gql`
       col1
       col2
       col3
+      id
     }
   }
 `;

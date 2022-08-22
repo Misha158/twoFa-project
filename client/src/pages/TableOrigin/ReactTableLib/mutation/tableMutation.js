@@ -6,6 +6,18 @@ export const CREATE_ROW = gql`
       col1
       col2
       col3
+      id
+    }
+  }
+`;
+
+export const DELETE_ROW = gql`
+  mutation deleteRowInTable($input: ID) {
+    deleteRowInTable(input: $input) {
+      col1
+      col2
+      col3
+      id
     }
   }
 `;

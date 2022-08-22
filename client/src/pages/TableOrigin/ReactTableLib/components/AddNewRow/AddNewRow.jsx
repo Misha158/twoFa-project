@@ -17,6 +17,7 @@ export const AddNewRow = ({ newRow, refetch }) => {
           col1: inputValue,
           col2: inputValue,
           col3: 1,
+          id: Math.floor(Math.random() * (100 + 1)),
         },
       },
     });

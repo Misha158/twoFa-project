@@ -1,6 +1,6 @@
 import { Button } from "antd";
 
-export const columns = [
+export const getColumns = ({ onClick }) => [
   {
     Header: "Column 1",
     accessor: "col1", // accessor is the "key" in the data
@@ -16,6 +16,10 @@ export const columns = [
   {
     Header: "Action",
     accessor: "col4",
-    Cell: () => <Button type="primary">Delete</Button>,
+    Cell: (value) => (
+      <Button type="primary" onClick={() => onClick(value)}>
+        Delete
+      </Button>
+    ),
   },
 ];
