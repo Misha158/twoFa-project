@@ -8,21 +8,22 @@ class RouterStore {
   routes = [];
   prevPage = null;
   isWasGoBack = false;
+  idx = null;
 
   changeRoutes({ route }) {
+    if (window.history.state.idx < this.idx && !this.isWasGoBack) {
+      this.idx = window.history.state.idx;
+      this.routes = this.routes.slice(0, this.routes.length - 1);
+      this.prevPage = this.routes[this.routes.length - 2];
+      return;
+    }
+
+    this.idx = window.history.state.idx;
     if (this.isWasGoBack) {
       this.isWasGoBack = false;
     } else {
       this.routes.push(route);
-      // console.log(toJS(this.routes));
-      /*      console.log(this.routes.length);
-      console.log(
-        toJS(
-          this.routes.length > 1
-            ? this.routes[this.routes.length - 2]
-            : this.routes[this.routes.length - 1]
-        )
-      );*/
+
       this.prevPage =
         this.routes.length > 1
           ? this.routes[this.routes.length - 2]
