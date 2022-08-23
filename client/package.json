@@ -7,7 +7,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "jest test --watch",
-    "coverage": "vitest run --coverage"
+    "coverage": "jest run --coverage"
   },
   "dependencies": {
     "@apollo/client": "^3.6.9",

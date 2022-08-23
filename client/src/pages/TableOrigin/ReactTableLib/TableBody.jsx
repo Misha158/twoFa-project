@@ -6,7 +6,7 @@ export const TableBody = ({ getTableBodyProps, rows, prepareRow }) => {
       {rows.map((row) => {
         prepareRow(row);
         return (
-          <tr {...row.getRowProps()}>
+          <tr {...row.getRowProps()} data-testid="tableCell">
             {row.cells.map((cell) => {
               return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>;
             })}
