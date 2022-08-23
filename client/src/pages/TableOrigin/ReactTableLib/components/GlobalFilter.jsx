@@ -1,7 +1,7 @@
 import React from "react";
-import { useAsyncDebounce } from "./useAsyncDebounce";
+import { useAsyncDebounce } from "../hooks/useAsyncDebounce";
 import { useQuery } from "@apollo/client";
-import { GET_TABLE_DATA_FILTERED } from "./query/tableQuery";
+import { GET_TABLE_DATA_FILTERED } from "../graphql/query/tableQuery";
 
 export const GlobalFilter = ({
   preGlobalFilteredRows,
