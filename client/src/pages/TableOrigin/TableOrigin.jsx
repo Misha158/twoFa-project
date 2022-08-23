@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, Layout } from "../../components";
 import { useMutation, useQuery } from "@apollo/client";
 import { ReactTableLib } from "./ReactTableLib/ReactTableLib";
@@ -27,13 +27,17 @@ export const TableOrigin = () => {
   return (
     <Layout>
       <Card>
-        <ReactTableLib
-          data={data}
-          loading={loading}
-          error={error}
-          refetch={refetch}
-          columns={columns}
-        />
+        {loading ? (
+          "Loading..."
+        ) : (
+          <ReactTableLib
+            data={data}
+            loading={loading}
+            error={error}
+            refetch={refetch}
+            columns={columns}
+          />
+        )}
       </Card>
     </Layout>
   );
