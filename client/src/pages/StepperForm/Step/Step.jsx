@@ -1,13 +1,13 @@
 import React from "react";
-import { Circle, WrapperStep, Line } from "./styled";
+import { Circle, WrapperStep, Line, CircleWrapper } from "./styled";
 
 export const Step = ({ label, icon }) => {
   return (
     <div className="cat" style={{ width: "80px" }}>
       <WrapperStep>
-        <div style={{ backgroundColor: "white", padding: "0px 5px" }}>
+        <CircleWrapper>
           <Circle>{icon}</Circle>
-        </div>
+        </CircleWrapper>
       </WrapperStep>
       <div style={{ textAlign: "center" }}>{label}</div>
     </div>

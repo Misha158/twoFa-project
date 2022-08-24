@@ -41,3 +41,20 @@ export const WrapperStep = styled.div`
 
   padding: 0 5px;
 `;
+
+export const CircleWrapper = styled.div`
+  background-color: white;
+  padding: 0 5px;
+
+  @media (min-width: 500px) {
+    :before {
+      content: "";
+      position: absolute;
+      background-color: white;
+      width: 30px;
+      height: 15px;
+      top: 0;
+      left: 0;
+    }
+  }
+`;

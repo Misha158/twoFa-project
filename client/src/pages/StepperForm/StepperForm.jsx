@@ -21,11 +21,13 @@ export const StepperForm = () => {
     }
   };
   return (
-    <div style={{ maxWidth: "600px", margin: "0 auto" }}>
+    <div style={{ maxWidth: "500px", margin: "0 auto" }}>
       <h1>StepperForm</h1>
       <StepIndicator>
         <Step label="General info" icon="1" />
         <Step label="Company info" icon="2" />
+        <Step label="Company info" icon="2" />
+
         {/*        <Step label="Almost Finish " icon="3" />
         <Step label="Almost Finish " icon="3" />*/}
       </StepIndicator>
