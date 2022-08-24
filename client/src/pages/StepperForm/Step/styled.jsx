@@ -5,9 +5,10 @@ export const Circle = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  width: 20px;
-  height: 20px;
-  background-color: darkgreen;
+  width: 25px;
+  height: 25px;
+  background-color: ${({ isActive }) => (isActive ? "darkgreen" : "white")};
+  border: 1px solid mediumblue;
   border-radius: 50%;
 `;
 
@@ -54,7 +55,7 @@ export const CircleWrapper = styled.div`
       width: 30px;
       height: 15px;
       top: 0;
-      left: 0;
+      left: -5px;
     }
   }
 `;

@@ -21,21 +21,28 @@ export const StepperForm = () => {
     }
   };
   return (
-    <div style={{ maxWidth: "500px", margin: "0 auto" }}>
+    <div style={{ maxWidth: "700px", margin: "0 auto" }}>
       <h1>StepperForm</h1>
-      <StepIndicator>
-        <Step label="General info" icon="1" />
+      <StepIndicator currentStep={step}>
+        {Array(7)
+          .fill()
+          .map((step, index) => (
+            <Step label="General info" icon={index + 1} />
+          ))}
+        {/*        <Step label="General info" icon="1" />
         <Step label="Company info" icon="2" />
         <Step label="Company info" icon="2" />
+        <Step label="Company info" icon="2" />
+        <Step label="Company info" icon="2" />*/}
 
         {/*        <Step label="Almost Finish " icon="3" />
         <Step label="Almost Finish " icon="3" />*/}
       </StepIndicator>
-      {/*      <div>{componentForm()}</div>
+      {/*<div>{componentForm()}</div>*/}
       <div style={{ display: "flex" }}>
         <Button onClick={() => setStep((prev) => prev - 1)}>Back</Button>
         <Button onClick={() => setStep((prev) => prev + 1)}>Next</Button>
-      </div>*/}
+      </div>
     </div>
   );
 };
