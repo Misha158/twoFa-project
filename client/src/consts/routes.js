@@ -14,4 +14,5 @@ export const routes = {
   tableOrigin: "/table_origin",
   graphql: "/graphql",
   chess: "/chess",
+  stepperForm: "/stepperForm",
 };

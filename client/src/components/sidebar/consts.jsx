@@ -46,4 +46,9 @@ export const pages = [
     icon: <AiOutlineExpand style={defaultStyles} />,
     url: routes.graphql,
   },
+  {
+    name: "Stepper Form",
+    icon: <AiOutlineExpand style={defaultStyles} />,
+    url: routes.stepperForm,
+  },
 ];
