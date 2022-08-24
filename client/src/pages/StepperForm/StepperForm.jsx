@@ -2,46 +2,54 @@ import React, { useState } from "react";
 import { Button } from "antd";
 import { StepIndicator } from "./StepperIndicator/StepIndicator";
 import { Step } from "./Step/Step";
+import { StepOne, StepThree, StepTwo } from "./components";
 
 export const StepperForm = () => {
   const [step, setStep] = useState(1);
+  const maxSteps = 3;
 
   const componentForm = () => {
     switch (step) {
       case 1:
-        return <div>hello 1</div>;
+        return <StepOne />;
 
       case 2:
-        return <div>hello 2</div>;
+        return <StepTwo />;
 
       case 3:
-        return <div>hello 3</div>;
+        return <StepThree />;
       default:
-        return <div>Default</div>;
+        return <StepOne />;
     }
   };
   return (
     <div style={{ maxWidth: "700px", margin: "0 auto" }}>
       <h1>StepperForm</h1>
       <StepIndicator currentStep={step}>
-        {Array(7)
+        {Array(maxSteps)
           .fill()
           .map((step, index) => (
             <Step label="General info" icon={index + 1} />
           ))}
-        {/*        <Step label="General info" icon="1" />
-        <Step label="Company info" icon="2" />
-        <Step label="Company info" icon="2" />
-        <Step label="Company info" icon="2" />
-        <Step label="Company info" icon="2" />*/}
-
-        {/*        <Step label="Almost Finish " icon="3" />
-        <Step label="Almost Finish " icon="3" />*/}
       </StepIndicator>
-      {/*<div>{componentForm()}</div>*/}
-      <div style={{ display: "flex" }}>
-        <Button onClick={() => setStep((prev) => prev - 1)}>Back</Button>
-        <Button onClick={() => setStep((prev) => prev + 1)}>Next</Button>
+      <div
+        style={{
+          maxWidth: "300px",
+          backgroundColor: "#ebeced",
+          padding: "10px 20px",
+          marginTop: "20px",
+        }}
+      >
+        {componentForm()}
+
+        {step > 1 && (
+          <Button onClick={() => setStep((prev) => prev - 1)}>Back</Button>
+        )}
+        {step !== maxSteps && (
+          <Button onClick={() => setStep((prev) => prev + 1)} type="primary">
+            Next
+          </Button>
+        )}
       </div>
     </div>
   );
