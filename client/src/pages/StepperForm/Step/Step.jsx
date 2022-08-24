@@ -2,7 +2,6 @@ import React from "react";
 import { Circle, WrapperStep, Line, CircleWrapper } from "./styled";
 
 export const Step = ({ label, icon, isActive }) => {
-  console.log(isActive);
   return (
     <div className="cat" style={{ width: "80px" }}>
       <WrapperStep>
@@ -14,6 +13,3 @@ export const Step = ({ label, icon, isActive }) => {
     </div>
   );
 };
-
-// <div>{label}</div>
-//

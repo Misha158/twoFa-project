@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Button, Input } from "antd";
 
@@ -7,17 +7,17 @@ export const Container = styled.div`
   border-radius: 10px;
 `;
 
-export const StepOne = () => {
+export const StepOne = ({ login, setLogin, password, setPassword }) => {
   return (
     <Container>
       <label>
         login
-        <Input />
+        <Input value={login} onChange={(e) => setLogin(e.target.value)} />
       </label>
 
       <label>
         password
-        <Input />
+        <Input value={password} onChange={(e) => setPassword(e.target.value)} />
       </label>
     </Container>
   );
