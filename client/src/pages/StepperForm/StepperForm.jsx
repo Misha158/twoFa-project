@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "antd";
-import { StepIndicator } from "./StepIndicator";
-import { Step } from "./Step";
+import { StepIndicator } from "./StepperIndicator/StepIndicator";
+import { Step } from "./Step/Step";
 
 export const StepperForm = () => {
   const [step, setStep] = useState(1);
@@ -21,12 +21,13 @@ export const StepperForm = () => {
     }
   };
   return (
-    <div>
+    <div style={{ maxWidth: "600px", margin: "0 auto" }}>
       <h1>StepperForm</h1>
       <StepIndicator>
         <Step label="General info" icon="1" />
         <Step label="Company info" icon="2" />
-        <Step label="Finish " icon="3" />
+        <Step label="Almost Finish " icon="3" />
+        <Step label="Finish " icon="4" />
       </StepIndicator>
       {/*      <div>{componentForm()}</div>
       <div style={{ display: "flex" }}>
