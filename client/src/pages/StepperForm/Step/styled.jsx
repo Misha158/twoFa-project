@@ -8,6 +8,7 @@ export const Circle = styled.div`
   width: 25px;
   height: 25px;
   background-color: ${({ isActive }) => (isActive ? "darkgreen" : "white")};
+  color: ${({ isActive }) => (isActive ? "white" : "black")};
   border: 1px solid mediumblue;
   border-radius: 50%;
 `;
