@@ -12,9 +12,25 @@ export const Circle = styled.div`
 `;
 
 export const Line = styled.div`
-  border-top-width: 1px;
-  border-top-style: solid;
-  flex: 1;
+  width: 93%;
+  background-color: black;
+  height: 1px;
+  position: absolute;
+  top: 10px;
+  right: 26px;
+  z-index: -1;
+
+  @media (max-width: 800px) {
+    width: 90%;
+  }
+
+  @media (max-width: 540px) {
+    width: 85%;
+  }
+
+  @media (max-width: 340px) {
+    width: 80%;
+  }
 `;
 
 export const WrapperStep = styled.div`

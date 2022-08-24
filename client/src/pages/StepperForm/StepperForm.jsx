@@ -26,8 +26,8 @@ export const StepperForm = () => {
       <StepIndicator>
         <Step label="General info" icon="1" />
         <Step label="Company info" icon="2" />
-        <Step label="Almost Finish " icon="3" />
-        <Step label="Finish " icon="4" />
+        {/*        <Step label="Almost Finish " icon="3" />
+        <Step label="Almost Finish " icon="3" />*/}
       </StepIndicator>
       {/*      <div>{componentForm()}</div>
       <div style={{ display: "flex" }}>

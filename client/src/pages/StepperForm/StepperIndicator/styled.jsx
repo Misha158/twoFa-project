@@ -3,8 +3,10 @@ import { Circle, Line } from "../Step/styled";
 
 export const Wrapper = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
+  position: relative;
+  overflow: hidden;
 
   // ${Line}:last-child {
   //   display: none;
