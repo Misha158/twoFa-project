@@ -1,7 +1,6 @@
 const { buildSchema } = require("graphql");
 
 const schema = buildSchema(`
-
     type ReactTable {
         col1: String
         col2: String
@@ -42,7 +41,7 @@ const schema = buildSchema(`
         col3: Int!
         id: ID!
     }
-    
+        
     input PostInput {
         id: ID
         title: String!
@@ -58,10 +57,18 @@ const schema = buildSchema(`
         
     }
     
+    input UpdatedData {
+        id: ID!
+        col1: String
+        col2: String
+        col3: Int
+    }
+    
     type Mutation {
         createUser(input: UserInput): User
         createRowInTable(input: TableRowInput): ReactTable
         deleteRowInTable(input: ID): ReactTable
+        updateRowInTable(input: UpdatedData): ReactTable
     }
 `);
 

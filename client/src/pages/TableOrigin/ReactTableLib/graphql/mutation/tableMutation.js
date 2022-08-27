@@ -21,3 +21,14 @@ export const DELETE_ROW = gql`
     }
   }
 `;
+
+export const UPDATE_ROW = gql`
+  mutation updateRowInTable($input: UpdatedData) {
+    updateRowInTable(input: $input) {
+      col1
+      col2
+      col3
+      id
+    }
+  }
+`;

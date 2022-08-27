@@ -34,8 +34,6 @@ export const GlobalFilter = ({
     }
   }, [data, globalFilter, dataFilter]);
 
-  console.log(globalFilter);
-
   return (
     <div style={{ marginBottom: "10px" }}>
       Search:{" "}

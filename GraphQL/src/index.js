@@ -44,13 +44,18 @@ const root = {
   },
 
   deleteRowInTable: ({ input }) => {
-    console.log(reactTableData.find((row) => row.id === input));
-
     reactTableData = reactTableData.filter((row) => row.id !== input);
     return reactTableData.find((row) => row.id === input);
-    // const newRow = { ...input };
-    // reactTableData.push(newRow);
-    // return newRow;
+  },
+
+  updateRowInTable: ({ input }) => {
+    console.log("input", input);
+    reactTableData = reactTableData.map((row) =>
+      row.id === input.id ? { ...row, ...input } : row
+    );
+    console.log(reactTableData);
+
+    return input;
   },
 
   getTable: () => {
