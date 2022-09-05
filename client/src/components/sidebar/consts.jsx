@@ -51,4 +51,9 @@ export const pages = [
     icon: <AiOutlineExpand style={defaultStyles} />,
     url: routes.stepperForm,
   },
+  {
+    name: "Target table",
+    icon: <AiOutlineExpand style={defaultStyles} />,
+    url: routes.targetingTable,
+  },
 ];

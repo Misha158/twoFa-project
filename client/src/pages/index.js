@@ -13,3 +13,4 @@ export { ReactTableLib } from "./TableOrigin/ReactTableLib/ReactTableLib";
 export { GraphQL } from "./GraphQL/GraphQL";
 export { Chess } from "./Chess/Chess";
 export { StepperForm } from "./StepperForm/StepperForm";
+export { TargetingTable } from "./TargetingTable/TargetingTable";

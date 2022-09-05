@@ -15,4 +15,5 @@ export const routes = {
   graphql: "/graphql",
   chess: "/chess",
   stepperForm: "/stepperForm",
+  targetingTable: "/targetingTable",
 };

@@ -27,6 +27,7 @@ import {
   GraphQL,
   Chess,
   StepperForm,
+  TargetingTable,
 } from "./pages";
 import { routes } from "./consts/routes";
 import { toJS } from "mobx";
@@ -67,6 +68,7 @@ export const App = observer(() => {
           <Route path={routes.test} element={<Test />} />
           <Route path={routes.chess} element={<Chess />} />
           <Route path={routes.stepperForm} element={<StepperForm />} />
+          <Route path={routes.targetingTable} element={<TargetingTable />} />
         </Route>
       </Routes>
     </>
