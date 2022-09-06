@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Select } from "antd";
 import { Card, Layout } from "../../components";
+import { Table } from "./components/Table";
 
 const { Option } = Select;
 
@@ -11,10 +12,20 @@ const subCategoryMap = {
   science: ["math", "biology", "physics"],
 };
 
+const dataSource = [
+  {
+    key: "1",
+    category: "Mike",
+    subCategory: 32,
+    multiplyValues: "10 Downing Street",
+  },
+];
+
 export const TargetingTable = () => {
   const [category, setCategory] = useState(null);
   const [subCategory, setSubCategory] = useState(null);
   const [multiplyValues, setMultiplyValues] = useState(null);
+  const [dataForTable, setDataForTable] = useState(null);
 
   const handleChangeCategory = (category) => {
     console.log(`selected ${category}`);
@@ -26,9 +37,21 @@ export const TargetingTable = () => {
     setSubCategory(subCategory);
   };
   const handleChangeMultiple = (multiple) => {
-    console.log(`selected ${multiple}`);
     setMultiplyValues(multiple);
   };
+
+  const handleInsertTable = () => {
+    const objData = {
+      key: dataForTable ? dataForTable?.length + 1 : 1,
+      category: category,
+      subCategory: subCategory,
+      multiplyValues: `${multiplyValues}`?.split(","),
+    };
+
+    setDataForTable((prev) => (prev ? [...prev, objData] : [objData]));
+  };
+
+  console.log(dataForTable);
 
   return (
     <Layout>
@@ -73,9 +96,14 @@ export const TargetingTable = () => {
           type="danger"
           style={{ width: "100px", backgroundColor: "red", color: "white" }}
           disabled={!multiplyValues}
+          onClick={handleInsertTable}
         >
           Insert
         </Button>
+
+        <div style={{ marginTop: "20px" }}>
+          <Table />
+        </div>
       </Card>
     </Layout>
   );
